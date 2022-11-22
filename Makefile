@@ -10,7 +10,7 @@ RESET = \e[0
 BLUE = \033[34m
 CYAN = \033[36m
 
-NAME = minishell
+NAME = cub3d
 
 SRCS 	= 
 
