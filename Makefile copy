@@ -29,7 +29,7 @@ LIB = utils/libft/libft.a utils/ft_printf/libftprintf.a
 LBFT_PATH = ./utils/libft/
 PRINTF_PATH = ./utils/ft_printf/
 
-MLX_PATH = ./utils/mlx/
+MLX_PATH = ./utils/mlx/opengl/
 
 CC 		= gcc
 CFLAGS 	= -Wall -Wextra -Werror #-g -fsanitize=address
@@ -64,6 +64,7 @@ clean:
 					@sleep 0.2
 					@printf "$(BLUE)🧽 Cleaning $(NAME)$(RESET)\n"
 					@$(MAKE) -C $(LBFT_PATH) clean
+					@$(MAKE) -C $(MLX_PATH) clean
 					@$(MAKE) -C $(PRINTF_PATH) clean
 					@echo "$(GREEN2)📚 Cleaning paths"
 					@sleep 0.2
@@ -73,6 +74,7 @@ clean:
 fclean: 	clean
 					@${RM} $(NAME)
 					@$(MAKE) -C $(LBFT_PATH) fclean
+					@$(MAKE) -C $(MLX_PATH) fclean
 					@$(MAKE) -C $(PRINTF_PATH) fclean
 					@echo "\033[31mEverything is deleting now ! ¯\_(ツ)_/¯"
 					@sleep 0.2

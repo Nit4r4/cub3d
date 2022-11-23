@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/11/22 07:55:03 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/11/23 15:58:01 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+/* INCLUDE LIBRARY */
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
@@ -22,6 +23,12 @@
 # include <pthread.h>
 # include <limits.h>
 # include <stdbool.h>
+
+/* INCLUDE PATHES */
+# include "../utils/libft/libft.h"
+//# include "../utils/get_next_line/get_next_line.h"
+# include "../utils/mlx/mlx.h"
+# include "../utils/ft_printf/ft_printf.h"
 
 /* DEFINE COLORS */
 # define PURP "\e[35m"
@@ -75,7 +82,7 @@ typedef struct s_cub3d
 	bool			alive;
 	pthread_t		th_philo;
 	pthread_mutex_t	fork;
-	t_args			*args;
+	//t_args			*args;
 }	t_cub3d;
 
 typedef struct s_args
@@ -95,7 +102,7 @@ typedef struct s_args
 
 
 /* UTILS */
-
+void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
 
 /* MANDATORY */
 
