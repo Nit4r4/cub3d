@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/11/23 15:58:01 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/11/24 08:25:32 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,9 @@ typedef struct s_args
 
 
 /* UTILS */
-void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
 
 /* MANDATORY */
-
+void	init_game(void);
 
 /* BONUS (ON Y CROIT) */
 
