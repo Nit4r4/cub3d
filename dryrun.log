@@ -1,0 +1,67 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/vferraro/Documents/42lausanne/Rentree_11.10.21/Cub3D/code'
+gcc -Wall -Wextra -Werror -Imlx  -I -Iinclude -Imlx -c srcs/cub3d.c -o srcs/cub3d.o
+ 
+echo "\033[36m---- Compiling library ----"
+sleep 0.2
+echo "\033[32m📚 Link paths"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./utils/libft/
+ 
+make[1]: Entering directory `/Users/vferraro/Documents/42lausanne/Rentree_11.10.21/Cub3D/code/utils/libft'
+gcc  -Wall -Wextra -Werror   -c -o ft_isalnum.o ft_isalnum.c
+gcc  -Wall -Wextra -Werror   -c -o ft_memcmp.o ft_memcmp.c
+gcc  -Wall -Wextra -Werror   -c -o ft_strncmp.o ft_strncmp.c
+gcc  -Wall -Wextra -Werror   -c -o ft_strlcat.o ft_strlcat.c
+gcc  -Wall -Wextra -Werror   -c -o ft_substr.o ft_substr.c
+gcc  -Wall -Wextra -Werror   -c -o ft_strdup.o ft_strdup.c
+gcc  -Wall -Wextra -Werror   -c -o ft_atoi.o ft_atoi.c
+gcc  -Wall -Wextra -Werror   -c -o ft_isalpha.o ft_isalpha.c
+gcc  -Wall -Wextra -Werror   -c -o ft_strjoin.o ft_strjoin.c
+gcc  -Wall -Wextra -Werror   -c -o ft_memcpy.o ft_memcpy.c
+gcc  -Wall -Wextra -Werror   -c -o ft_strchr.o ft_strchr.c
+gcc  -Wall -Wextra -Werror   -c -o ft_strlcpy.o ft_strlcpy.c
+gcc  -Wall -Wextra -Werror   -c -o ft_strnstr.o ft_strnstr.c
+gcc  -Wall -Wextra -Werror   -c -o ft_tolower.o ft_tolower.c
+gcc  -Wall -Wextra -Werror   -c -o ft_bzero.o ft_bzero.c
+gcc  -Wall -Wextra -Werror   -c -o ft_isascii.o ft_isascii.c
+gcc  -Wall -Wextra -Werror   -c -o ft_isprint.o ft_isprint.c
+gcc  -Wall -Wextra -Werror   -c -o ft_memmove.o ft_memmove.c
+gcc  -Wall -Wextra -Werror   -c -o ft_strlen.o ft_strlen.c
+gcc  -Wall -Wextra -Werror   -c -o ft_strrchr.o ft_strrchr.c
+gcc  -Wall -Wextra -Werror   -c -o ft_toupper.o ft_toupper.c
+gcc  -Wall -Wextra -Werror   -c -o ft_calloc.o ft_calloc.c
+gcc  -Wall -Wextra -Werror   -c -o ft_isdigit.o ft_isdigit.c
+gcc  -Wall -Wextra -Werror   -c -o ft_memchr.o ft_memchr.c
+gcc  -Wall -Wextra -Werror   -c -o ft_memset.o ft_memset.c
+gcc  -Wall -Wextra -Werror   -c -o ft_strtrim.o ft_strtrim.c
+gcc  -Wall -Wextra -Werror   -c -o ft_putchar_fd.o ft_putchar_fd.c
+gcc  -Wall -Wextra -Werror   -c -o ft_putstr_fd.o ft_putstr_fd.c
+gcc  -Wall -Wextra -Werror   -c -o ft_putendl_fd.o ft_putendl_fd.c
+gcc  -Wall -Wextra -Werror   -c -o ft_putnbr_fd.o ft_putnbr_fd.c
+gcc  -Wall -Wextra -Werror   -c -o ft_itoa.o ft_itoa.c
+gcc  -Wall -Wextra -Werror   -c -o ft_strmapi.o ft_strmapi.c
+gcc  -Wall -Wextra -Werror   -c -o ft_striteri.o ft_striteri.c
+ 
+gcc  -Wall -Wextra -Werror   -c -o ft_split.o ft_split.c
+ar -rc libft.a ft_isalnum.o ft_memcmp.o ft_strncmp.o ft_strlcat.o ft_substr.o ft_strncmp.o ft_strdup.o ft_atoi.o ft_isalpha.o ft_strjoin.o ft_memcpy.o ft_strchr.o ft_strlcpy.o ft_strlcpy.o ft_strnstr.o ft_tolower.o ft_bzero.o ft_isascii.o ft_memcpy.o ft_isprint.o ft_memmove.o ft_strdup.o ft_strlen.o ft_strrchr.o ft_toupper.o ft_calloc.o ft_isdigit.o ft_memchr.o ft_memset.o ft_strtrim.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_split.o
+make[1]: Leaving directory `/Users/vferraro/Documents/42lausanne/Rentree_11.10.21/Cub3D/code/utils/libft'
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./utils/ft_printf/
+ 
+make[1]: Entering directory `/Users/vferraro/Documents/42lausanne/Rentree_11.10.21/Cub3D/code/utils/ft_printf'
+gcc -Wall -Wextra -Werror   -c -o ft_printf.o ft_printf.c
+gcc -Wall -Wextra -Werror   -c -o ft_putchar_c.o ft_putchar_c.c
+gcc -Wall -Wextra -Werror   -c -o ft_putstr_s.o ft_putstr_s.c
+gcc -Wall -Wextra -Werror   -c -o ft_ptr_p.o ft_ptr_p.c
+gcc -Wall -Wextra -Werror   -c -o ft_putnbr_d.o ft_putnbr_d.c
+gcc -Wall -Wextra -Werror   -c -o ft_printf_u.o ft_printf_u.c
+gcc -Wall -Wextra -Werror   -c -o ft_printfhex_x.o ft_printfhex_x.c
+ar -rcs libftprintf.a ft_printf.o ft_putchar_c.o ft_putstr_s.o ft_ptr_p.o ft_putnbr_d.o ft_printf_u.o ft_printfhex_x.o
+make[1]: Leaving directory `/Users/vferraro/Documents/42lausanne/Rentree_11.10.21/Cub3D/code/utils/ft_printf'
+gcc -Wall -Wextra -Werror -Imlx  srcs/cub3d.o -o cub3d utils/libft/libft.a utils/ft_printf/libftprintf.a utils/mlx/libmlx.a -framework OpenGL -framework AppKit
+printf "\033[34m🍵 Creating cub3d\e[0\n"
+sleep 0.2
+echo "\033[36mCub3D Compiled ! \033[39m(\033[31m๑\033[39m╹◡╹\033[31m๑\033[39m)"
+sleep 0.2
+echo ""
+make: Leaving directory `/Users/vferraro/Documents/42lausanne/Rentree_11.10.21/Cub3D/code'
+ 

@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/11/24 15:51:38 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/06 10:26:15 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@
 # define ERROR "Error\n"
 # define ERR_ARG "\033[31mError : bad number of arguments"
 # define ERR_FILE "> Le fichier n'est pas au bon format\n"
+# define ERR_KEY "Misclick ? Cette touche n'est pas valide\n"
 
 /* ACTIONS MESSAGES */
 # define M_MSG "Inclure le message voulu ici"
