@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/06 10:26:15 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/06 14:30:59 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,27 @@
 # define ERR_ARG "\033[31mError : bad number of arguments"
 # define ERR_FILE "> Le fichier n'est pas au bon format\n"
 # define ERR_KEY "Misclick ? Cette touche n'est pas valide\n"
+# define BAD_CHAR "> there is a bad char on your map\n"
+# define BAD_MAP "> map is not correct\n"
+
 
 /* ACTIONS MESSAGES */
 # define M_MSG "Inclure le message voulu ici"
 
 /* STRUCT */
-typedef struct s_cub3d
+typedef struct s_map
 {
-	int				nbr_of_fork;
-	int				name;
-	int				meals_eaten;
-	int				last_meal;
-	bool			alive;
-	pthread_t		th_philo;
-	pthread_mutex_t	fork;
-	//t_args			*args;
-}	t_cub3d;
+	char	**map;
+	int		nblines;
+	int		hei;
+	int		wid;
+}		t_map;
+
+typedef struct s_cub
+{
+	void	*mlx_ptr;
+	t_map	map;
+}	t_cub;
 
 typedef struct s_args
 {
@@ -106,6 +111,9 @@ typedef struct s_args
 
 /* MANDATORY */
 void	init_game(void);
+void	critical_errors(char *str);
+int		read_map(t_cub *cub, char *file);
+void	error_close(char *str);
 
 /* BONUS (ON Y CROIT) */
 

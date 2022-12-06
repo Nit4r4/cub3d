@@ -6,11 +6,11 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 08:46:48 by vferraro          #+#    #+#             */
-/*   Updated: 2022/11/22 08:55:08 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/06 14:17:27 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 /************************************************
 * Gere le message d'erreur et exit le programme *

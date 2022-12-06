@@ -6,22 +6,24 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:47:50 by vferraro          #+#    #+#             */
-/*   Updated: 2022/11/23 13:47:52 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/06 13:08:30 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	draw_map(t_game *game)
+#include "../include/cub3d.h"
+
+void	draw_map(t_cub *cub)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (y < game->map.height)
+	while (y < cub->map.hei)
 	{
 		x = 0;
-		while (x < game->map.width)
+		while (x < cub->map.wid)
 		{
-			define_map(game, x, y);
+			define_map(cub, x, y);
 			x++;
 		}
 		y++;

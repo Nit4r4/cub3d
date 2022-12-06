@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/06 10:33:14 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:04:12 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,26 @@ int	a_little_bit(void *mlx_ptr, void *win)
 
 int	move_your_body(void *mlx_ptr, void *win, int perso)
 {
-	char	o_key = 0;
+	int	o_key = 0;
 
-	perso = a_little_bit(mlx_ptr, win);
+	//perso = a_little_bit(mlx_ptr, win);
 
-	if (o_key == 'a')
-		printf("coucou\n");
 	if (o_key == ESC)
-		exit(0);
+		EXIT_FAILURE;
 	if (o_key == KEY_A)
-		perso -= 1;
+		{
+		mlx_pixel_put(mlx_ptr, win, 397, 250, 0X7E0EF4);
+		mlx_pixel_put(mlx_ptr, win, 398, 250, 0X7E0EF4);
+		mlx_pixel_put(mlx_ptr, win, 399, 250, 0X7E0EF4);
+		mlx_pixel_put(mlx_ptr, win, 400, 250, 0X7E0EF4);
+		mlx_pixel_put(mlx_ptr, win, 402, 250, 0Xcecece);
+		mlx_pixel_put(mlx_ptr, win, 401, 250, 0X7E0EF4);
+		mlx_pixel_put(mlx_ptr, win, 400, 250, 0X7E0EF4);
+		mlx_pixel_put(mlx_ptr, win, 400, 249, 0X7E0EF4);
+		mlx_pixel_put(mlx_ptr, win, 400, 248, 0X7E0EF4);
+		mlx_pixel_put(mlx_ptr, win, 400, 247, 0X7E0EF4);
+		mlx_pixel_put(mlx_ptr, win, 400, 246, 0X7E0EF4);
+		}
 	else if (o_key == KEY_W)
 		perso -= 1;
 	else if (o_key == KEY_S)
@@ -74,16 +84,23 @@ int	move_your_body(void *mlx_ptr, void *win, int perso)
 	return (0);
 }
 
-int	in_key_s_hook(int o_key, t_cub3d *game)
+int	in_key_s_hook(int o_key, t_cub *cub)
 {
 	// void	*mlx_ptr = NULL;
 	void	*win = NULL;
+	//void *mlx_ptr = NULL;
 	(void)o_key;
 
 	// mlx_loop_hook(mlx_ptr, bouge_ton_bool, NULL);
 	// mlx_loop_hook(mlx_ptr, move_your_body, NULL);
-	mlx_hook(win, 17, 0L << 0, bouge_ton_bool, game);
-	mlx_hook(win, 2, 1L << 0, move_your_body, game);
+	mlx_hook(win, 17, 0L << 0, bouge_ton_bool, cub);
+	mlx_hook(win, 53, 0L << 0, bouge_ton_bool, cub);
+	mlx_hook(win, 13, 1L << 0, move_your_body, cub);
+	//mlx_hook(win, 0, 1L << 0, move_your_body, cub);
+	mlx_hook(win, 1, 1L << 0, move_your_body, cub);
+	mlx_hook(win, 2, 1L << 0, move_your_body, cub);
+	mlx_hook(win, KEY_A, 1L << 0, move_your_body, cub);
+	//mlx_loop_hook(mlx_ptr, move_your_body, NULL);
 	return (0);
 }
 
@@ -91,17 +108,18 @@ int	main(void)
 {
 	void	*mlx_ptr;
 	void	*win;
-	int		perso = 0;
-	t_cub3d	*game = NULL;
+	//int		perso = 0;
+	t_cub	*cub = NULL;
+	//int		o_key = 0;
 
 	mlx_ptr = NULL;
 	mlx_ptr = mlx_init(mlx_ptr);
-	win = mlx_new_window(mlx_ptr, 500, 500, "cub3D");
+	win = mlx_new_window(mlx_ptr, 800, 500, "cub3D");
 
 	size_t	j = 0;
 	for (; j < 500; j++)
 	{
-		for (size_t i = 0; i < 500; i++)
+		for (size_t i = 0; i < 800; i++)
 		{
 			if (i % 50 == 0 || j % 50 == 0)
 			{	
@@ -109,9 +127,9 @@ int	main(void)
 			}
 			else
 			{
-				if ((i > 50 && j < 450) && (j > 50 && i < 450))
+				if ((i > 50 && j < 450) && (j > 50 && i < 750))
 				{
-					mlx_pixel_put(mlx_ptr, win, i, j, 0XAAAAAA);
+					mlx_pixel_put(mlx_ptr, win, i, j, 0Xcecece);
 				}
 				else
 				{
@@ -121,8 +139,8 @@ int	main(void)
 		}
 	}
 	a_little_bit(mlx_ptr, win);
-	mlx_key_hook(win, in_key_s_hook, &game);
+	mlx_key_hook(win, in_key_s_hook, &cub);
 	//in_key_s_hook(game);
-	move_your_body(mlx_ptr, win, perso);
+	//move_your_body(mlx_ptr, win, perso);
 	mlx_loop(mlx_ptr);
 }

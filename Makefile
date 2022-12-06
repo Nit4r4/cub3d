@@ -12,7 +12,7 @@ CYAN = \033[36m
 
 NAME = cub3d
 
-SRCS 	= srcs/cub3d.c
+SRCS 	= srcs/cub3d.c srcs/check_error.c
 
 OBJS 	= ${SRCS:.c=.o}
 MAIN	= srcs/cub3d.c
@@ -25,7 +25,7 @@ PRINTF_PATH = ./utils/ft_printf/
 MLX_PATH = ./utils/mlx/
 
 CC 		= gcc
-CFLAGS 	= -Wall -Wextra -Werror -Imlx #-g -fsanitize=address
+CFLAGS 	= -Wall -Wextra -Werror -Imlx -g -fsanitize=address
 
 MLXFLAGS = -framework OpenGL -framework AppKit
 
