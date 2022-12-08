@@ -6,25 +6,42 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 13:02:46 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/06 15:05:14 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/08 15:35:18 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/*lis les 6 infos au-dessus de la map dans le .cub !! selon Tiago, ce n'est pas
-opti. Il faudrait mettre ces infos dans un tableau */
+/*lis les 6 infos au-dessus de la map dans le .cub !! les infos sont enregistr
+dans les variables de la map. substr, permet de rentrer les infos sans les
+prefixes (no, ea, etc) et le \n*/
 
-void	check_info_map(char *info, int line)
+void	check_info_map(t_map *map, char *info, int line)
 {
 	if (line == 0 && ft_strncmp(info, "NO ", 3) == 0)
+	{
+		map->no = ft_substr(info, 3, ft_strlen(info) - 4);
+		printf("%s\n", map->no);
 		return ;
+	}
 	else if (line == 1 && ft_strncmp(info, "SO ", 3) == 0)
+	{
+		map->so = ft_substr(info, 3, ft_strlen(info) - 4);
+		printf("%s\n", map->so);
 		return ;
+	}
 	else if (line == 2 && ft_strncmp(info, "WE ", 3) == 0)
+	{
+		map->we = ft_substr(info, 3, ft_strlen(info) - 4);
+		printf("%s\n", map->we);
 		return ;
+	}
 	else if (line == 3 && ft_strncmp(info, "EA ", 3) == 0)
+	{
+		map->ea = ft_substr(info, 3, ft_strlen(info) - 4);
+		printf("%s\n", map->ea);
 		return ;
+	}
 	else if (line == 4 && ft_strncmp(info, "F ", 2) == 0)
 		return ;
 	else if (line == 5 && ft_strncmp(info, "C ", 2) == 0)
@@ -39,8 +56,11 @@ on enregistre le tout dans une chaine de characteres (*map) */
 void	get_map(t_map *map, int fd)
 {
 	char	*gnl;
+	char	*tmp;
 
-	gnl = ft_strtrim(get_next_line(fd), IS_SPACE);
+	tmp = get_next_line(fd);
+	gnl = ft_strtrim(tmp, IS_SPACE);
+	free(tmp);
 	while (gnl)
 	{
 		if (map->nb_lines > 6 && map->len_line < (int)ft_strlen(gnl))
@@ -49,19 +69,21 @@ void	get_map(t_map *map, int fd)
 		{
 			if (map->nb_lines < 6)
 			{
-				gnl = ft_strtrim(gnl, IS_SPACE);
-				check_info_map(gnl, map->nb_lines);
+				check_info_map(map, gnl, map->nb_lines);
 			}
-			if (!map->map)
+			else if (!map->map)
 				map->map = ft_strdup(gnl);
 			else
 				map->map = ft_strjoin_cub(map->map, gnl, 1);
-			map++;
+			map->nb_lines++;
 		}
 		free(gnl);
-		gnl = get_next_line(fd);
+		tmp = get_next_line(fd);
+		gnl = ft_strtrim(tmp, IS_SPACE);
+		free(tmp);
 	}
 	free(gnl);
+	printf("%s\n", map->map);
 }
 
 void	get_tabmap(t_map *map, int i)

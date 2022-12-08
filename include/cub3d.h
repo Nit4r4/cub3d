@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/06 15:04:40 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/08 15:06:07 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@
 
 typedef struct s_map
 {
-	char	**info; // tout le fichier
 	char	*map;
 	char	**tabmap;
 	int		nb_lines;
@@ -94,6 +93,12 @@ typedef struct s_map
 	int		wid;
 	int		x;
 	int		y;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int		floor;
+	int		ceiling;
 }		t_map;
 
 typedef struct s_cub
@@ -106,13 +111,16 @@ typedef struct s_cub
 //void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
 
 /* MANDATORY */
-int		read_map(t_cub *cub, char *file);
+//int		read_map(t_cub *cub, char *file);
 void	error_close(char *str);
 void	check_file(char *str);
 void	parse_map(t_map *map, char **av);
 void	critical_errors(char *str);
 char	*ft_strjoin_cub(char *s1, char *s2, int mode);
 void	check_tabmap(t_map *map);
+void	free_tab(char **tab, int len);
+void	free_map(t_map *map);
+void	free_cub(t_cub *cub);
 
 /* BONUS (ON Y CROIT) */
 

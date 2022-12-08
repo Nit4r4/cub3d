@@ -6,10 +6,29 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 13:10:03 by creyt             #+#    #+#             */
-/*   Updated: 2022/03/03 11:33:21 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/06 16:16:07 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+# include <stdlib.h>
+# include <unistd.h>
+
+char	*get_next_line(int fd);
+char	*ft_strchr(const char *str, int c);
+char	*ft_substr(const char *str, unsigned int start, size_t len);
+size_t	ft_strlen(const char *str);
+char	*ft_strjoin(const char *str1, const char *str2);
+
+#endif
+
+/*
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
@@ -36,3 +55,4 @@ char	*gnl_substr(char const *s, unsigned int start, size_t len);
 char	*gnl_strdup(char **s1, int istr);
 
 #endif
+*/
