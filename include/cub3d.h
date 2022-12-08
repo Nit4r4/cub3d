@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/06 14:30:59 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/08 11:37:09 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@
 # define ERR_KEY "Misclick ? Cette touche n'est pas valide\n"
 # define BAD_CHAR "> there is a bad char on your map\n"
 # define BAD_MAP "> map is not correct\n"
+# define ERR_WIN "> No window here...sooooo dark\n"
 
 
 /* ACTIONS MESSAGES */
@@ -88,6 +89,13 @@ typedef struct s_map
 typedef struct s_cub
 {
 	void	*mlx_ptr;
+	void	*img;
+	void	*win;
+	char	*mlx_add;
+	int		mlx_bpp;
+	int		mlx_nd; //endian machin de alex
+	int		mlx_len;
+	int		test;
 	t_map	map;
 }	t_cub;
 
