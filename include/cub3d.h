@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/08 11:37:09 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:30:56 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@
 # define ERROR "Error\n"
 # define ERR_ARG "\033[31mError : bad number of arguments"
 # define ERR_FILE "> Le fichier n'est pas au bon format\n"
-# define ERR_KEY "Misclick ? Cette touche n'est pas valide\n"
+# define ERR_KEY "Misclick ? Touche non valide\n"
 # define BAD_CHAR "> there is a bad char on your map\n"
 # define BAD_MAP "> map is not correct\n"
 # define ERR_WIN "> No window here...sooooo dark\n"
@@ -84,6 +84,7 @@ typedef struct s_map
 	int		nblines;
 	int		hei;
 	int		wid;
+//	size_t		map_size;
 }		t_map;
 
 typedef struct s_cub
@@ -93,35 +94,43 @@ typedef struct s_cub
 	void	*win;
 	char	*mlx_add;
 	int		mlx_bpp;
-	int		mlx_nd; //endian machin de alex
+	int		mlx_nd; //endian
 	int		mlx_len;
-	int		test;
+	int		move;
 	t_map	map;
+	//t_vect	pos;
 }	t_cub;
 
-typedef struct s_args
+typedef struct s_vect
 {
-	int				nbr_of_philo;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				nbr_of_meal;
-	int				time_to_think;
-	int				all_meal_eaten;
-	long int		start_time;
-	long int		end_time;
-	pthread_mutex_t	mutex;
-	struct s_philo	*philos;
-}	t_args;
+	int		pos;
+	float	x;
+	float	y;
+}	t_vect;
 
+typedef struct s_player
+{
+	t_vect	pos; 
+	t_vect	dir;
+	t_vect	old;
+	char	cardi;// ?
+}	t_player;
 
 /* UTILS */
 
 /* MANDATORY */
 void	init_game(void);
+void	init_pos(t_cub *cub);
+
 void	critical_errors(char *str);
 int		read_map(t_cub *cub, char *file);
+int		color_map(t_cub *cub);
+int		a_little_bit( t_cub *cub);
+int		move_your_body(int o_key, t_cub *cub);
+int		in_key_s_hook(int o_key, t_cub *cub);
 void	error_close(char *str);
+
+
 
 /* BONUS (ON Y CROIT) */
 
