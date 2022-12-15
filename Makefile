@@ -12,7 +12,7 @@ CYAN = \033[36m
 
 NAME = cub3d
 
-SRCS 	= srcs/cub3d.c srcs/check_error.c srcs/init.c
+SRCS 	= srcs/cub3d.c srcs/check_error.c srcs/init.c srcs/define_map.c
 
 OBJS 	= ${SRCS:.c=.o}
 MAIN	= srcs/cub3d.c

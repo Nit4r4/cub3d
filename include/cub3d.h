@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/08 14:30:56 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/15 11:07:37 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,15 @@
 # include "../utils/mlx/mlx.h"
 # include "../utils/ft_printf/ft_printf.h"
 
-/* DEFINE COLORS */
+/* DEFINE COLORS HEX*/
+# define BLOOD 0x8d0b0b
+# define GREY 0xcecece
+# define WHITE 0xffffff
+# define BLACK 0x000000
+
 # define PURP "\e[35m"
 # define GREEN "\e[32m"
 # define RED "\e[31m"
-# define WHITE "\e[39m"
 # define YELLOW "\033[33m"
 # define ORANGE "$(shell tput setaf 208)"
 # define RESET "\e[0"
@@ -49,6 +53,9 @@
 # define IMG_I "./img_xpm/item_32x32_smallApple.xpm"
 # define IMG_E "./img_xpm/end32x32_flip.xpm"
 
+/* DEFINE SIZES */
+# define WIN_WID 800
+# define WIN_HEI 500
 # define IMG_X 32
 # define IMG_Y 32
 
@@ -84,6 +91,7 @@ typedef struct s_map
 	int		nblines;
 	int		hei;
 	int		wid;
+	int		mmap_size;
 //	size_t		map_size;
 }		t_map;
 
@@ -125,6 +133,7 @@ void	init_pos(t_cub *cub);
 void	critical_errors(char *str);
 int		read_map(t_cub *cub, char *file);
 int		color_map(t_cub *cub);
+//int		color_map(t_cub *cub, int i, int j, int color);
 int		a_little_bit( t_cub *cub);
 int		move_your_body(int o_key, t_cub *cub);
 int		in_key_s_hook(int o_key, t_cub *cub);
