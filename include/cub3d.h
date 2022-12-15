@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/15 11:25:58 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/15 13:38:27 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,15 @@
 # include "../utils/mlx/mlx.h"
 # include "../utils/ft_printf/ft_printf.h"
 
-/* DEFINE COLORS */
+/* DEFINE COLORS HEX*/
+# define BLOOD 0x8d0b0b
+# define GREY 0xcecece
+# define WHITE 0xffffff
+# define BLACK 0x000000
+
 # define PURP "\e[35m"
 # define GREEN "\e[32m"
 # define RED "\e[31m"
-# define WHITE "\e[39m"
 # define YELLOW "\033[33m"
 # define ORANGE "$(shell tput setaf 208)"
 # define RESET "\e[0"
@@ -49,8 +53,13 @@
 # define IMG_E "./img_xpm/end32x32_flip.xpm"
 # define ERR_TXT "Error\n"
 
+/* DEFINE SIZES */
+# define WIN_WID 800
+# define WIN_HEI 500
 # define IMG_X 32
 # define IMG_Y 32
+
+/*DEFINE CHAR */
 # define IS_SPACE " \n\t\v\f\r"
 # define IS_PLAYER "NSWE"
 # ifndef IS_MAP
@@ -83,6 +92,8 @@
 # define ERR_MAP_CONTENT "Error\nInvalid content map\n"
 # define ERR_MAP_SIZE "Error\nInvalid size map\n"
 # define ERR_MAP_PLAYER "Error\nInvalid player map\n"
+# define ERR_KEY "Misclick ? Touche non valide\n"
+# define ERR_WIN "> No window here...sooooo dark\n"
 
 /* ACTIONS MESSAGES */
 # define M_MSG "Inclure le message voulu ici"
@@ -98,6 +109,7 @@ typedef struct s_map
 	int		len_line;
 	int		hei;
 	int		wid;
+	int		mmap_size;
 	int		x;
 	int		y;
 	char	*no;
@@ -110,21 +122,48 @@ typedef struct s_map
 	int		ceiling;
 }		t_map;
 
+typedef struct s_vect
+{
+	int		pos;
+	float	x;
+	float	y;
+}	t_vect;
+
+typedef struct s_player
+{
+	t_vect	pos;
+	t_vect	dir;
+	t_vect	old;
+	char	cardi;// ?
+}	t_player;
+
 typedef struct s_cub
 {
 	void	*mlx_ptr;
+	void	*img;
+	void	*win;
+	char	*mlx_add;
+	int		mlx_bpp;
+	int		mlx_nd; //endian
+	int		mlx_len;
+	int		move;
 	t_map	map;
+	//t_vect	pos;
 }	t_cub;
 
 /* UTILS */
 //void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
 
 /* MANDATORY */
+void	init_game(void);
+void	init_pos(t_cub *cub);
+
+void	critical_errors(char *str);
+
 int		read_map(t_cub *cub, char *file);
 void	error_close(char *str);
 void	check_file(char *str);
 void	parse_map(t_map *map, char **av);
-void	critical_errors(char *str);
 char	*ft_strjoin_cub(char *s1, char *s2, int mode);
 int		ft_isspace(int c);
 int		ft_nbrlen(int n);
@@ -133,10 +172,16 @@ char	*ft_strtrim_head(char *s1, char const *set);
 void	check_tabmap(t_map *map);
 int		get_elems(t_map *map);
 int		is_map(char c);
+
+int		color_map(t_cub *cub);
+int		a_little_bit( t_cub *cub);
+int		move_your_body(int o_key, t_cub *cub);
+int		in_key_s_hook(int o_key, t_cub *cub);
 //int	get_floor_or_ceiling(t_map *map, int i);
 
 /* BONUS (ON Y CROIT) */
 
 //MAIS BIEN SUR !!
+int	not_main(void);
 
 #endif
