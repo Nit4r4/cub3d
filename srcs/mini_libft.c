@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 11:45:49 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/15 10:34:49 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/15 11:25:09 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,28 @@ size_t	ft_strlen_c(char *str, char c)
 		i++;
 	return (i);
 }
+
+int	is_map(char c)
+{
+	if (ft_strchr(IS_MAP, c))
+		return (1);
+	return (0);
+}
+
+char	*ft_strtrim_head(char *s1, char const *set)
+{
+	char	*res;
+	int		i;
+	int		j;
+
+	if (!s1 || !set)
+		return (NULL);
+	i = 0;
+	j = ft_strlen(s1);
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	res = ft_substr(s1, i, j - i + 1);
+	free(s1);
+	return (res);
+}
+

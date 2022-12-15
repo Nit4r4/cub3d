@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 13:02:46 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/15 10:35:54 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/15 11:25:32 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,59 +16,31 @@
 dans les variables de la map. substr, permet de rentrer les infos sans les
 prefixes (no, ea, etc) et le \n*/
 
-void	check_info_map(t_map *map, char *info, int line)
+static void	check_info_map(char *gnl, int line)
 {
-	if (line == 0 && ft_strncmp(info, "NO ", 3) == 0)
-	{
-		map->no = ft_substr(info, 3, ft_strlen(info) - 4);
-		printf("%s\n", map->no);
+	if (line == 0 && ft_strncmp(gnl, "NO ", 3) == 0)
 		return ;
-	}
-	else if (line == 1 && ft_strncmp(info, "SO ", 3) == 0)
-	{
-		map->so = ft_substr(info, 3, ft_strlen(info) - 4);
-		printf("%s\n", map->so);
+	else if (line == 1 && ft_strncmp(gnl, "SO ", 3) == 0)
 		return ;
-	}
-	else if (line == 2 && ft_strncmp(info, "WE ", 3) == 0)
-	{
-		map->we = ft_substr(info, 3, ft_strlen(info) - 4);
-		printf("%s\n", map->we);
+	else if (line == 2 && ft_strncmp(gnl, "WE ", 3) == 0)
 		return ;
-	}
-	else if (line == 3 && ft_strncmp(info, "EA ", 3) == 0)
-	{
-		map->ea = ft_substr(info, 3, ft_strlen(info) - 4);
-		printf("%s\n", map->ea);
+	else if (line == 3 && ft_strncmp(gnl, "EA ", 3) == 0)
 		return ;
-	}
-	else if (line == 4 && ft_strncmp(info, "F ", 2) == 0)
-	{
-		map->fl = ft_substr(info, 2, ft_strlen(info) - 3);
-		printf("%s\n", map->fl);
+	else if (line == 4 && ft_strncmp(gnl, "F ", 2) == 0)
 		return ;
-	}
-	else if (line == 5 && ft_strncmp(info, "C ", 2) == 0)
-	{
-		map->cei = ft_substr(info, 2, ft_strlen(info) - 3);
-		printf("%s\n", map->fl);
+	else if (line == 5 && ft_strncmp(gnl, "C ", 2) == 0)
 		return ;
-	}
 	critical_errors(ERR_MAP_INFO);
 }
 
 /* on check les caracteres speciaux/interdits en premier lieu, on lit le haut
 d'ou le fait qu'on fait un strtrim pour enlever les char speciaux
 on enregistre le tout dans une chaine de characteres (*map) */
-
-void	get_map(t_map *map, int fd)
+static void	get_map(t_map *map, int fd)
 {
 	char	*gnl;
-	char	*tmp;
 
-	tmp = get_next_line(fd);
-	gnl = ft_strtrim(tmp, IS_SPACE);
-	free(tmp);
+	gnl = ft_strtrim_head(get_next_line(fd), IS_SPACE);
 	while (gnl)
 	{
 		if (map->nb_lines > 6 && map->len_line < (int)ft_strlen(gnl))
@@ -77,21 +49,19 @@ void	get_map(t_map *map, int fd)
 		{
 			if (map->nb_lines < 6)
 			{
-				check_info_map(map, gnl, map->nb_lines);
+				gnl = ft_strtrim_head(gnl, IS_SPACE);
+				check_info_map(gnl, map->nb_lines);
 			}
-			else if (!map->map)
+			if (!map->map)
 				map->map = ft_strdup(gnl);
 			else
 				map->map = ft_strjoin_cub(map->map, gnl, 1);
 			map->nb_lines++;
 		}
 		free(gnl);
-		tmp = get_next_line(fd);
-		gnl = ft_strtrim(tmp, IS_SPACE);
-		free(tmp);
+		gnl = get_next_line(fd);
 	}
 	free(gnl);
-	printf("%s\n", map->map);
 }
 
 void	get_tabmap(t_map *map, int i)
@@ -107,7 +77,7 @@ void	get_tabmap(t_map *map, int i)
 		{
 			if (map->map[i] != '\n')
 			{
-				if (ft_strchr("01NSWE", map->map[i]) || map->map[i] == ' ')
+				if (is_map(map->map[i]) || map->map[i] == ' ')
 				{
 					if (map->map[i] != ' ')
 						map->tabmap[y][x] = (char)ft_toupper(map->map[i]);
@@ -130,13 +100,13 @@ void	init_tabmap(t_map *map)
 
 	map->tabmap = ft_calloc(sizeof(char *), map->nb_lines);
 	if (!map->tabmap)
-		critical_errors(ERROR);
+		critical_errors(ERR_MALLOC);
 	i = -1;
 	while (++i < map->nb_lines)
 	{
 		map->tabmap[i] = ft_calloc(sizeof(char), map->len_line);
 		if (!map->tabmap[i])
-			critical_errors(ERROR);
+			critical_errors(ERR_MALLOC);
 	}
 	i = -1;
 	while (++i < map->nb_lines)
@@ -145,6 +115,7 @@ void	init_tabmap(t_map *map)
 		while (++j < map->len_line)
 			map->tabmap[i][j] = '.';
 	}
+		printf("%s\n", map->map);
 }
 
 void	parse_map(t_map *map, char **av)

@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/15 10:32:56 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/15 11:25:58 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@
 # define IMG_X 32
 # define IMG_Y 32
 # define IS_SPACE " \n\t\v\f\r"
+# define IS_PLAYER "NSWE"
+# ifndef IS_MAP
+#  define IS_MAP "01NSWE"
+# endif
 
 /* DEFINE KEYS */
 # define ESC 53
@@ -75,6 +79,7 @@
 # define ERR_MAP_INFO " > infos on the map are wrong\n"
 # define MAP_ERR_HO "The map is like the Emmental!\n"
 # define MAP_ERR_HO_2 "The map is like the Gruyere!\n"
+# define ERR_MALLOC "Error\nCannot allocate memory\n"
 # define ERR_MAP_CONTENT "Error\nInvalid content map\n"
 # define ERR_MAP_SIZE "Error\nInvalid size map\n"
 # define ERR_MAP_PLAYER "Error\nInvalid player map\n"
@@ -124,8 +129,10 @@ char	*ft_strjoin_cub(char *s1, char *s2, int mode);
 int		ft_isspace(int c);
 int		ft_nbrlen(int n);
 size_t	ft_strlen_c(char *str, char c);
+char	*ft_strtrim_head(char *s1, char const *set);
 void	check_tabmap(t_map *map);
 int		get_elems(t_map *map);
+int		is_map(char c);
 //int	get_floor_or_ceiling(t_map *map, int i);
 
 /* BONUS (ON Y CROIT) */

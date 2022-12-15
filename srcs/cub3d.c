@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/08 15:22:43 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/15 11:24:31 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,13 @@
 
 int	main(int argc, char **argv)
 {
-	t_map	*map;
-
+	t_map *map;;
+//	int	i;
+//	char	*j;
 	map = malloc(sizeof(t_map));
-	if (argc == 2)
-	{
-		parse_map(map, argv);
-		printf("%s\n", map->map);
-	}
-	critical_errors(ERR_ARG);
-//	free_map(map);
+	if (argc != 2)
+		critical_errors(ERR_ARG);
+	parse_map(map, argv);
 	return (0);
 //	void	*mlx_ptr;
 //	void	*win;
@@ -46,3 +43,4 @@ int	main(int argc, char **argv)
 }
 
 //RE LIRE LES MAN DE MLX
+
