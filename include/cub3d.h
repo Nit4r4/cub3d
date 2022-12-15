@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/15 13:38:27 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/15 15:31:56 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,9 @@ typedef struct s_cub
 	int		mlx_nd; //endian
 	int		mlx_len;
 	int		move;
+	int		move_x;
 	t_map	map;
-	//t_vect	pos;
+	t_vect	*pos;
 }	t_cub;
 
 /* UTILS */
@@ -157,6 +158,7 @@ typedef struct s_cub
 /* MANDATORY */
 void	init_game(void);
 void	init_pos(t_cub *cub);
+void	set_pos(t_cub *cub, double x, double y);
 
 void	critical_errors(char *str);
 

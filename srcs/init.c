@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 10:51:15 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/15 13:40:14 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/15 15:32:26 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,17 @@ void	init_game(void)
 	mlx_init();
 }
 
-void	init_pos(t_cub *cub)
-{
-	cub->map.wid = 800;
-	cub->map.hei = 500;
-}
+// void	set_pos(t_cub *cub, double x, double y)
+// {
+// 	cub->pos->x = x;
+// 	cub->pos->y = y;
+// }
+
+// void	init_pos(t_cub *cub)
+// {
+// 	cub->move = 0;
+// 	cub->map.wid = WIN_WID;
+// 	cub->map.hei = WIN_HEI;
+// 	set_pos(cub->move, 0, 0);
+// 	set_pos(cub->move_x, 0, 0);
+// }
