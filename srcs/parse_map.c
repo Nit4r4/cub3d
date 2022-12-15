@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 13:02:46 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/08 15:35:18 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/15 10:35:54 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,17 @@ void	check_info_map(t_map *map, char *info, int line)
 		return ;
 	}
 	else if (line == 4 && ft_strncmp(info, "F ", 2) == 0)
+	{
+		map->fl = ft_substr(info, 2, ft_strlen(info) - 3);
+		printf("%s\n", map->fl);
 		return ;
+	}
 	else if (line == 5 && ft_strncmp(info, "C ", 2) == 0)
+	{
+		map->cei = ft_substr(info, 2, ft_strlen(info) - 3);
+		printf("%s\n", map->fl);
 		return ;
+	}
 	critical_errors(ERR_MAP_INFO);
 }
 
@@ -144,7 +152,6 @@ void	parse_map(t_map *map, char **av)
 	int	fd;
 	int	i;
 
-	i = 0;
 	check_file(av[1]);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
@@ -155,6 +162,7 @@ void	parse_map(t_map *map, char **av)
 	get_map(map, fd);
 	map->nb_lines -= 6;
 	map->len_line -= 1;
+	i = get_elems(map);
 	init_tabmap(map);
 	get_tabmap(map, i);
 	check_tabmap(map);

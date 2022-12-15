@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 08:46:48 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/06 15:10:08 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/15 10:33:10 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	check_center_map(t_map *map, int x, int y)
 			|| (map->tabmap[y][x] == '0' && map->tabmap[y - 1][x] == '.')
 			|| (map->tabmap[y][x] == '0' && map->tabmap[y + 1][x] == '.'))
 		{
-			critical_errors(MAP_ERR_HO);
+			critical_errors(MAP_ERR_HO_2);
 		}
 	}
 }

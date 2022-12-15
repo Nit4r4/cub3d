@@ -19,3 +19,4 @@ void	calloc_cub(t_cub *cub)
 		critical_errors(ERROR);
 }
 
+
