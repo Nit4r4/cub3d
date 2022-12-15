@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/15 13:39:32 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/15 13:53:06 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,6 @@
 // 	}
 // }
 
-int	main(int argc, char **argv)
-{
-	t_map *map;;
-//	int	i;
-//	char	*j;
-	map = malloc(sizeof(t_map));
-	if (argc != 2)
-		critical_errors(ERR_ARG);
-	parse_map(map, argv);
-	return (0);
-//	void	*mlx_ptr;
-//	void	*win;
-
-//	mlx_ptr = NULL;
-		// mlx_ptr = mlx_init(mlx_ptr);
-		// win = mlx_new_window(mlx_ptr, 1920, 1080, "hello world");
-		// mlx_loop(mlx_ptr);
-}
 
 //RE LIRE LES MAN DE MLX
 
@@ -113,6 +95,24 @@ int	in_key_s_hook(int o_key, t_cub *cub)
 	// mlx_hook(win, 2, 1L << 0, move_your_body, cub);
 	// mlx_hook(win, KEY_A, 1L << 0, move_your_body, cub);
 	//mlx_loop_hook(mlx_ptr, move_your_body, NULL);
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_cub	*cub;
+
+	cub = malloc(sizeof(t_cub));
+	if (argc != 2)
+		critical_errors(ERR_ARG);
+	parse_map(&cub->map, argv);
+	cub->mlx_ptr = mlx_init();
+	cub->win = mlx_new_window(cub->mlx_ptr, WIN_WID, WIN_HEI, "cub3D");
+	cub->img = mlx_new_image(cub->mlx_ptr, 800, 500);
+	cub->mlx_add = mlx_get_data_addr(cub->img, &cub->mlx_bpp, &cub->mlx_len, &cub->mlx_nd);
+	mlx_hook(cub->win, 2, 1L << 0, move_your_body, cub);
+	mlx_loop_hook(cub->mlx_ptr, color_map, cub); //soucis de memoire et de exe speed
+	mlx_loop(cub->mlx_ptr);
 	return (0);
 }
 
