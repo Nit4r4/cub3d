@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/15 13:38:27 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/20 11:06:13 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@
 
 /* ACTIONS MESSAGES */
 # define M_MSG "Inclure le message voulu ici"
+# define BYE "*********************\n* Good Bye ヾ(☆▽☆ ) *\n*********************\n"
 
 /* STRUCT */
 
@@ -173,7 +174,9 @@ void	check_tabmap(t_map *map);
 int		get_elems(t_map *map);
 int		is_map(char c);
 
+int		exit_window(t_cub *cub);
 int		color_map(t_cub *cub);
+int		key_hook(t_cub *cub);
 int		a_little_bit( t_cub *cub);
 int		move_your_body(int o_key, t_cub *cub);
 int		in_key_s_hook(int o_key, t_cub *cub);
