@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/15 15:44:34 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/20 12:11:12 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,12 +137,13 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		critical_errors(ERR_ARG);
 	parse_map(&cub->map, argv);
+	//draw_mmap(cub, 10, 20);
 	cub->mlx_ptr = mlx_init();
 	cub->win = mlx_new_window(cub->mlx_ptr, WIN_WID, WIN_HEI, "cub3D");
 	cub->img = mlx_new_image(cub->mlx_ptr, 800, 500);
 	cub->mlx_add = mlx_get_data_addr(cub->img, &cub->mlx_bpp, &cub->mlx_len, &cub->mlx_nd);
 	mlx_hook(cub->win, 2, 1L << 0, move_your_body, cub);
-	mlx_loop_hook(cub->mlx_ptr, color_map, cub); //soucis de memoire et de exe speed
+	mlx_loop_hook(cub->mlx_ptr, draw_mmap, cub);
 	mlx_loop(cub->mlx_ptr);
 	return (0);
 }

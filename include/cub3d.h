@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/15 15:31:56 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/20 12:12:38 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define CYAN "\033[36m"
 
 /* DEFINE IMAGES */
-# define IMG_G "./img_xpm/vide_HERBE_32x32.xpm"
+# define IMG_G "./img_xpm/vide_HERBE_32x32.xpm" //les images a changer ??
 # define IMG_W "./img_xpm/mur_arbre_32x32C2.xpm"
 # define IMG_P "./img_xpm/fox.xpm"
 # define IMG_PL "./img_xpm/foxL.xpm"
@@ -102,7 +102,6 @@
 
 typedef struct s_map
 {
-	char	**info; // tout le fichier
 	char	*map;
 	char	**tabmap;
 	int		nb_lines;
@@ -152,6 +151,12 @@ typedef struct s_cub
 	t_vect	*pos;
 }	t_cub;
 
+typedef struct s_ray
+{
+	
+}	t_ray;
+
+
 /* UTILS */
 //void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
 
@@ -163,6 +168,7 @@ void	set_pos(t_cub *cub, double x, double y);
 void	critical_errors(char *str);
 
 int		read_map(t_cub *cub, char *file);
+int		draw_mmap(t_cub *cub, int i, int j);
 void	error_close(char *str);
 void	check_file(char *str);
 void	parse_map(t_map *map, char **av);
