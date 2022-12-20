@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/20 17:34:56 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/20 18:02:18 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ void	draw_line(int x2, int y2, t_cub *cub, int color)
 	double	delta_y;
 	int		pixels;
 
-	delta_x = (double)x2 - cub->pos.x / 20 * 20;
-	delta_y = (double)y2 - cub->pos.y / 20 * 20;
+	delta_x = (double)x2 - cub->pos.x;
+	delta_y = (double)y2 - cub->pos.y - 20;
+	delta_y = sin(cub->pos.pos) * 5;
+	delta_x = cos(cub->pos.pos) * 5;
 	pixels = sqrt((delta_x * delta_x) +(delta_y * delta_y));
-	pixel_x = cub->pos.x / 20 * 20;
-	pixel_y = cub->pos.y / 20 * 20;
+	pixel_x = cub->pos.x;
+	pixel_y = cub->pos.y;
 	delta_x /= pixels;
 	delta_y /= pixels;
 	while (pixels)
@@ -60,9 +62,6 @@ void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-
-//RE LIRE LES MAN DE MLX
-
 int	a_little_bit( t_cub *cub)
 {
 	t_vect	pos;
@@ -74,7 +73,7 @@ int	a_little_bit( t_cub *cub)
 	// pos.y = (cub->map.hei)/2;
 	// pos.x = (cub->map.wid)/2;
 
-	// my_mlx_pixel_put(cub, pos.x, pos.y, color);
+	my_mlx_pixel_put(cub, pos.x, pos.y, color);
 	// my_mlx_pixel_put(cub, pos.x - 1, pos.y, color);
 	// my_mlx_pixel_put(cub, pos.x - 2, pos.y, color);
 	// my_mlx_pixel_put(cub, pos.x + 1, pos.y, color);
@@ -117,7 +116,10 @@ int	move_your_body(int o_key, t_cub *cub)
 		// 	cub->map.tabmap[pos.y][pos.x] = '0';
 		// }
 
-		cub->pos.x -= 5;
+		// cub->pos.x -= 5;
+		cub->pos.pos -= 1;
+		if (cub->pos.pos < 0)
+			cub->pos.pos = 360;
 		
 		// cub->move--;
 		
@@ -129,7 +131,12 @@ int	move_your_body(int o_key, t_cub *cub)
 	else if (o_key == KEY_S)
 		cub->pos.y += 5;
 	else if (o_key == KEY_D)
-		cub->pos.x += 5;
+	{
+		// cub->pos.x += 5;
+		cub->pos.pos += 1;
+		if (cub->pos.pos > 360)
+			cub->pos.pos = 0;
+	}
 	else if (o_key != KEY_A || o_key != KEY_S || \
 				o_key != KEY_W || o_key != KEY_D)
 	{
@@ -195,6 +202,7 @@ int	main(int argc, char **argv)
 	//definir position du player
 	cub->pos.x = 26 * 20 + 10;
 	cub->pos.y = 11 * 20 + 10;
+	cub->pos.pos = 90; //angle il faut changer le nom
 	
 	//draw_mmap(cub, 10, 20);
 	cub->mlx_ptr = mlx_init();
