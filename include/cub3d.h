@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/20 12:12:38 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:33:41 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <pthread.h>
 # include <limits.h>
 # include <stdbool.h>
+# include <math.h>
 
 /* INCLUDE PATHES */
 # include "../utils/libft/libft.h"
@@ -56,6 +57,8 @@
 /* DEFINE SIZES */
 # define WIN_WID 800
 # define WIN_HEI 500
+# define MM_HEI 30
+# define MM_WID 50
 # define IMG_X 32
 # define IMG_Y 32
 
@@ -65,6 +68,8 @@
 # ifndef IS_MAP
 #  define IS_MAP "01NSWE"
 # endif
+
+# define SMP 5
 
 /* DEFINE KEYS */
 # define ESC 53
@@ -123,9 +128,9 @@ typedef struct s_map
 
 typedef struct s_vect
 {
-	int		pos;
-	float	x;
-	float	y;
+	int	pos;
+	int	x;
+	int	y;
 }	t_vect;
 
 typedef struct s_player
@@ -141,6 +146,7 @@ typedef struct s_cub
 	void	*mlx_ptr;
 	void	*img;
 	void	*win;
+	void	*mm;
 	char	*mlx_add;
 	int		mlx_bpp;
 	int		mlx_nd; //endian
@@ -148,7 +154,7 @@ typedef struct s_cub
 	int		move;
 	int		move_x;
 	t_map	map;
-	t_vect	*pos;
+	t_vect	pos;
 }	t_cub;
 
 typedef struct s_ray
@@ -156,6 +162,9 @@ typedef struct s_ray
 	
 }	t_ray;
 
+
+void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
+int		create_trgb(int t, int r, int g, int b);
 
 /* UTILS */
 //void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
