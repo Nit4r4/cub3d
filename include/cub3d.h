@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/20 17:33:41 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/22 08:12:54 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@
 # define IMG_Y 32
 
 /*DEFINE CHAR */
+# define BYE "*********************\n* Good Bye ヾ(☆▽☆ ) *\n*********************\n"
 # define IS_SPACE " \n\t\v\f\r"
 # define IS_PLAYER "NSWE"
 # ifndef IS_MAP
@@ -70,6 +71,7 @@
 # endif
 
 # define SMP 5
+# define SPD 0.1
 
 /* DEFINE KEYS */
 # define ESC 53
@@ -162,10 +164,6 @@ typedef struct s_ray
 	
 }	t_ray;
 
-
-void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
-int		create_trgb(int t, int r, int g, int b);
-
 /* UTILS */
 //void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
 
@@ -175,10 +173,11 @@ void	init_pos(t_cub *cub);
 void	set_pos(t_cub *cub, double x, double y);
 
 void	critical_errors(char *str);
+void	error_close(char *str);
 
 int		read_map(t_cub *cub, char *file);
 int		draw_mmap(t_cub *cub, int i, int j);
-void	error_close(char *str);
+
 void	check_file(char *str);
 void	parse_map(t_map *map, char **av);
 char	*ft_strjoin_cub(char *s1, char *s2, int mode);
@@ -191,7 +190,11 @@ int		get_elems(t_map *map);
 int		is_map(char c);
 
 int		color_map(t_cub *cub);
+int		create_trgb(int t, int r, int g, int b);
+void	put_rect(t_cub *cub, int x, int y, int color, int size);
+
 int		a_little_bit( t_cub *cub);
+void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
 int		move_your_body(int o_key, t_cub *cub);
 int		in_key_s_hook(int o_key, t_cub *cub);
 //int	get_floor_or_ceiling(t_map *map, int i);
