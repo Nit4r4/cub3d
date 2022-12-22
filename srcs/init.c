@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 10:51:15 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/15 15:32:26 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/22 13:10:44 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,25 @@ void	init_game(void)
 {
 	mlx_init();
 }
+
+// void	init_player_pos(t_cub *cub)
+// {
+// 	int	x = 0;
+// 	int	y = 0;
+// 	char*cardi = NULL;
+	
+// 	cub->pos.x = x + 0.5;
+// 	cub->pos.y = y + 0.5;
+// 	if (*cardi == 'N')
+// 		cub->play.dir = 'N';
+// 	if (*cardi == 'S')
+// 		cub->play.dir = 'S';
+// 	if (*cardi == 'W')
+// 		cub->play.dir = 'W';
+// 	if (*cardi == 'E')
+// 		cub->play.dir = 'E';
+// 	*cardi = '0';
+// }
 
 // void	set_pos(t_cub *cub, double x, double y)
 // {

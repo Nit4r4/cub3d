@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:05:29 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/22 08:13:31 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/22 13:28:55 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	draw_line(int x2, int y2, t_cub *cub, int color)
 
 	delta_x = (double)x2 - cub->pos.x;
 	delta_y = (double)y2 - cub->pos.y - 20;
-	delta_y = sin(cub->pos.pos) * SMP;
-	delta_x = cos(cub->pos.pos) * SMP;
+	delta_y = sin(cub->pos.a) * SMP;
+	delta_x = cos(cub->pos.a) * SMP;
 	pixels = sqrt((delta_x * delta_x) +(delta_y * delta_y));
 	pixel_x = cub->pos.x;
 	pixel_y = cub->pos.y;
@@ -41,9 +41,11 @@ void	draw_line(int x2, int y2, t_cub *cub, int color)
 void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
 {
 	char	*dst;
-
+	if ((0 < x && x < WIN_WID) && (0 < y && y < WIN_HEI))
+	{
 	dst = cub->mlx_add + (y * cub->mlx_len + x * (cub->mlx_bpp / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
+	}
 }
 
 int	a_little_bit( t_cub *cub)
@@ -58,14 +60,14 @@ int	a_little_bit( t_cub *cub)
 	// pos.x = (cub->map.wid)/2;
 
 	my_mlx_pixel_put(cub, pos.x, pos.y, color);
-	// my_mlx_pixel_put(cub, pos.x - 1, pos.y, color);
-	// my_mlx_pixel_put(cub, pos.x - 2, pos.y, color);
-	// my_mlx_pixel_put(cub, pos.x + 1, pos.y, color);
-	// my_mlx_pixel_put(cub, pos.x + 2, pos.y, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 1, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 2, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 3, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 4, color);
+	my_mlx_pixel_put(cub, pos.x - 1, pos.y, color);
+	my_mlx_pixel_put(cub, pos.x - 2, pos.y, color);
+	my_mlx_pixel_put(cub, pos.x + 1, pos.y, color);
+	my_mlx_pixel_put(cub, pos.x + 2, pos.y, color);
+	my_mlx_pixel_put(cub, pos.x, pos.y - 1, color);
+	my_mlx_pixel_put(cub, pos.x, pos.y - 2, color);
+	my_mlx_pixel_put(cub, pos.x, pos.y - 3, color);
+	my_mlx_pixel_put(cub, pos.x, pos.y - 4, color);
 	draw_line(pos.x, pos.y, cub, color);
 	// my_mlx_pixel_put(cub, pos.x, pos.y - 1, BLOOD);
 	// my_mlx_pixel_put(cub, pos.x, pos.y - 2, BLOOD);

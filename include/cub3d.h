@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/22 08:12:54 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/22 14:10:20 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,33 +130,37 @@ typedef struct s_map
 
 typedef struct s_vect
 {
-	int	pos;
-	int	x;
-	int	y;
+	float	a;
+	int		x;
+	int		y;
 }	t_vect;
 
 typedef struct s_player
 {
 	t_vect	pos;
-	t_vect	dir;
+	char	dir;
+	float	dist_x;
+	float	dist_y;
+//	float	a; //angle
+	char	cardi;
 	t_vect	old;
-	char	cardi;// ?
 }	t_player;
 
 typedef struct s_cub
 {
-	void	*mlx_ptr;
-	void	*img;
-	void	*win;
-	void	*mm;
-	char	*mlx_add;
-	int		mlx_bpp;
-	int		mlx_nd; //endian
-	int		mlx_len;
-	int		move;
-	int		move_x;
-	t_map	map;
-	t_vect	pos;
+	void		*mlx_ptr;
+	void		*img;
+	void		*win;
+	void		*mm;
+	char		*mlx_add;
+	int			mlx_bpp;
+	int			mlx_nd; //endian
+	int			mlx_len;
+	int			move;
+	int			move_x;
+	t_player	play;
+	t_map		map;
+	t_vect		pos;
 }	t_cub;
 
 typedef struct s_ray
@@ -171,6 +175,8 @@ typedef struct s_ray
 void	init_game(void);
 void	init_pos(t_cub *cub);
 void	set_pos(t_cub *cub, double x, double y);
+// void	init_player_pos(t_cub *cub, int x, int y, char *cardi);
+void	init_player_pos(t_cub *cub);
 
 void	critical_errors(char *str);
 void	error_close(char *str);
@@ -197,6 +203,11 @@ int		a_little_bit( t_cub *cub);
 void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
 int		move_your_body(int o_key, t_cub *cub);
 int		in_key_s_hook(int o_key, t_cub *cub);
+void	ft_camera(t_cub *cub, int o_key);
+void	move_w_angle(t_cub *cub, float new_x, float new_y);
+
+double	degree_to_radian(double degrees);
+
 //int	get_floor_or_ceiling(t_map *map, int i);
 
 /* BONUS (ON Y CROIT) */

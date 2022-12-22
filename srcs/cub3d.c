@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/22 08:05:54 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/22 13:19:42 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,11 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		critical_errors(ERR_ARG);
 	parse_map(&cub->map, argv);
+	//init_player_pos(cub);
 	//definir position du player
 	cub->pos.x = 26 * 20 + 10;
 	cub->pos.y = 11 * 20 + 10;
-	cub->pos.pos = 90; //angle il faut changer le nom
+	cub->pos.a = 90;
 	
 	//draw_mmap(cub, 10, 20);
 	cub->mlx_ptr = mlx_init();
