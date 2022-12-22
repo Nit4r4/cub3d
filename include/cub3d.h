@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/20 11:06:13 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/22 13:16:54 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <pthread.h>
 # include <limits.h>
 # include <stdbool.h>
+# include <math.h>
 
 /* INCLUDE PATHES */
 # include "../utils/libft/libft.h"
@@ -45,7 +46,7 @@
 # define CYAN "\033[36m"
 
 /* DEFINE IMAGES */
-# define IMG_G "./img_xpm/vide_HERBE_32x32.xpm"
+# define IMG_G "./img_xpm/vide_HERBE_32x32.xpm" //les images a changer ??
 # define IMG_W "./img_xpm/mur_arbre_32x32C2.xpm"
 # define IMG_P "./img_xpm/fox.xpm"
 # define IMG_PL "./img_xpm/foxL.xpm"
@@ -56,15 +57,21 @@
 /* DEFINE SIZES */
 # define WIN_WID 800
 # define WIN_HEI 500
+# define MM_HEI 30
+# define MM_WID 50
 # define IMG_X 32
 # define IMG_Y 32
 
 /*DEFINE CHAR */
+# define BYE "*********************\n* Good Bye ヾ(☆▽☆ ) *\n*********************\n"
 # define IS_SPACE " \n\t\v\f\r"
 # define IS_PLAYER "NSWE"
 # ifndef IS_MAP
 #  define IS_MAP "01NSWE"
 # endif
+
+# define SMP 5
+# define SPD 0.1
 
 /* DEFINE KEYS */
 # define ESC 53
@@ -97,13 +104,11 @@
 
 /* ACTIONS MESSAGES */
 # define M_MSG "Inclure le message voulu ici"
-# define BYE "*********************\n* Good Bye ヾ(☆▽☆ ) *\n*********************\n"
 
 /* STRUCT */
 
 typedef struct s_map
 {
-	char	**info; // tout le fichier
 	char	*map;
 	char	**tabmap;
 	int		nb_lines;
@@ -125,9 +130,9 @@ typedef struct s_map
 
 typedef struct s_vect
 {
-	int		pos;
-	float	x;
-	float	y;
+	int	pos;
+	int	x;
+	int	y;
 }	t_vect;
 
 typedef struct s_player
@@ -143,14 +148,21 @@ typedef struct s_cub
 	void	*mlx_ptr;
 	void	*img;
 	void	*win;
+	void	*mm;
 	char	*mlx_add;
 	int		mlx_bpp;
 	int		mlx_nd; //endian
 	int		mlx_len;
 	int		move;
+	int		move_x;
 	t_map	map;
-	//t_vect	pos;
+	t_vect	pos;
 }	t_cub;
+
+typedef struct s_ray
+{
+
+}	t_ray;
 
 /* UTILS */
 //void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
@@ -158,11 +170,14 @@ typedef struct s_cub
 /* MANDATORY */
 void	init_game(void);
 void	init_pos(t_cub *cub);
+void	set_pos(t_cub *cub, double x, double y);
 
 void	critical_errors(char *str);
+void	error_close(char *str);
 
 int		read_map(t_cub *cub, char *file);
-void	error_close(char *str);
+int		draw_mmap(t_cub *cub, int i, int j);
+
 void	check_file(char *str);
 void	parse_map(t_map *map, char **av);
 char	*ft_strjoin_cub(char *s1, char *s2, int mode);
@@ -174,10 +189,12 @@ void	check_tabmap(t_map *map);
 int		get_elems(t_map *map);
 int		is_map(char c);
 
-int		exit_window(t_cub *cub);
 int		color_map(t_cub *cub);
-int		key_hook(t_cub *cub);
+int		create_trgb(int t, int r, int g, int b);
+void	put_rect(t_cub *cub, int x, int y, int color, int size);
+
 int		a_little_bit( t_cub *cub);
+void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
 int		move_your_body(int o_key, t_cub *cub);
 int		in_key_s_hook(int o_key, t_cub *cub);
 //int	get_floor_or_ceiling(t_map *map, int i);
@@ -185,6 +202,6 @@ int		in_key_s_hook(int o_key, t_cub *cub);
 /* BONUS (ON Y CROIT) */
 
 //MAIS BIEN SUR !!
-int	not_main(void);
+int		not_main(void);
 
 #endif
