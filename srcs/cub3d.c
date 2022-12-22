@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/22 13:19:42 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:58:34 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	main(int argc, char **argv)
 	cub = malloc(sizeof(t_cub));
 	if (argc != 2)
 		critical_errors(ERR_ARG);
+	init_game(cub);
 	parse_map(&cub->map, argv);
 	//init_player_pos(cub);
 	//definir position du player

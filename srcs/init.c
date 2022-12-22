@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 10:51:15 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/22 13:10:44 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/22 16:01:41 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,33 @@ void	calloc_cub(t_cub *cub)
 		critical_errors(ERROR);
 }
 */
-void	init_game(void)
+void	init_game(t_cub *cub)
 {
 	mlx_init();
+	cub->play.dirx = 0;
+	cub->play.diry = degree_to_radian(1);
+	cub->play.vue = WIN_HEI / 2;
+	cub->pos.a = 0;
 }
 
-// void	init_player_pos(t_cub *cub)
-// {
-// 	int	x = 0;
-// 	int	y = 0;
-// 	char*cardi = NULL;
+void	init_player_pos(t_cub *cub)
+{
+	int	x = 0;
+	int	y = 0;
+	char *cardi = NULL;
 	
-// 	cub->pos.x = x + 0.5;
-// 	cub->pos.y = y + 0.5;
-// 	if (*cardi == 'N')
-// 		cub->play.dir = 'N';
-// 	if (*cardi == 'S')
-// 		cub->play.dir = 'S';
-// 	if (*cardi == 'W')
-// 		cub->play.dir = 'W';
-// 	if (*cardi == 'E')
-// 		cub->play.dir = 'E';
-// 	*cardi = '0';
-// }
+	cub->pos.x = x + 0.5;
+	cub->pos.y = y + 0.5;
+	if (*cardi == 'N')
+		cub->play.dir = 'N';
+	if (*cardi == 'S')
+		cub->play.dir = 'S';
+	if (*cardi == 'W')
+		cub->play.dir = 'W';
+	if (*cardi == 'E')
+		cub->play.dir = 'E';
+	*cardi = '0';
+}
 
 // void	set_pos(t_cub *cub, double x, double y)
 // {

@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/22 14:10:20 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/22 16:30:14 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@
 
 # define SMP 5
 # define SPD 0.1
+# define RSP degree_to_radian(1)
 
 /* DEFINE KEYS */
 # define ESC 53
@@ -139,10 +140,13 @@ typedef struct s_player
 {
 	t_vect	pos;
 	char	dir;
-	float	dist_x;
-	float	dist_y;
+	float	distx;
+	float	disty;
+	float	dirx;
+	float	diry;
 //	float	a; //angle
 	char	cardi;
+	int		vue;
 	t_vect	old;
 }	t_player;
 
@@ -172,7 +176,7 @@ typedef struct s_ray
 //void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
 
 /* MANDATORY */
-void	init_game(void);
+void	init_game(t_cub *cub);
 void	init_pos(t_cub *cub);
 void	set_pos(t_cub *cub, double x, double y);
 // void	init_player_pos(t_cub *cub, int x, int y, char *cardi);
@@ -203,10 +207,16 @@ int		a_little_bit( t_cub *cub);
 void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
 int		move_your_body(int o_key, t_cub *cub);
 int		in_key_s_hook(int o_key, t_cub *cub);
-void	ft_camera(t_cub *cub, int o_key);
+void	ft_camera_l(t_cub *cub);
+void	ft_camera_r(t_cub *cub);
 void	move_w_angle(t_cub *cub, float new_x, float new_y);
+void	move_s_angle(t_cub *cub, float new_x, float new_y);
+void	move_a_angle(t_cub *cub, float new_x, float new_y);
+void	move_d_angle(t_cub *cub, float new_x, float new_y);
+void	move_left_camera(t_cub *cub, float new_x, float new_y);
+void	move_right_camera(t_cub *cub, float new_x, float new_y);
 
-double	degree_to_radian(double degrees);
+double	degree_to_radian(double degree);
 
 //int	get_floor_or_ceiling(t_map *map, int i);
 
