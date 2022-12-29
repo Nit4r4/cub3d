@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   its_alive.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:05:29 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/22 08:13:31 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:48:14 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ int	a_little_bit( t_cub *cub)
 	// pos.x = (cub->map.wid)/2;
 
 	my_mlx_pixel_put(cub, pos.x, pos.y, color);
-	// my_mlx_pixel_put(cub, pos.x - 1, pos.y, color);
-	// my_mlx_pixel_put(cub, pos.x - 2, pos.y, color);
-	// my_mlx_pixel_put(cub, pos.x + 1, pos.y, color);
-	// my_mlx_pixel_put(cub, pos.x + 2, pos.y, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 1, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 2, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 3, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 4, color);
+	my_mlx_pixel_put(cub, pos.x - 1, pos.y, color);
+	my_mlx_pixel_put(cub, pos.x - 2, pos.y, color);
+	my_mlx_pixel_put(cub, pos.x + 1, pos.y, color);
+	my_mlx_pixel_put(cub, pos.x + 2, pos.y, color);
+	my_mlx_pixel_put(cub, pos.x, pos.y - 1, color);
+	my_mlx_pixel_put(cub, pos.x, pos.y - 2, color);
+	my_mlx_pixel_put(cub, pos.x, pos.y - 3, color);
+	my_mlx_pixel_put(cub, pos.x, pos.y - 4, color);
 	draw_line(pos.x, pos.y, cub, color);
 	// my_mlx_pixel_put(cub, pos.x, pos.y - 1, BLOOD);
 	// my_mlx_pixel_put(cub, pos.x, pos.y - 2, BLOOD);
