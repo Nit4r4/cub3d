@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:02:15 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/22 10:09:27 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:25:37 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	color_map(t_cub *cub)
 	int	y;
 	int	size;
 
-	size = 20;
+	size = CUBE;
 	y = 0;
 	if (cub->win)
 	{

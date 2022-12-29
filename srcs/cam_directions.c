@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:54:02 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/22 16:41:21 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/22 16:53:41 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,4 @@ void	move_right_camera(t_cub *cub, float new_x, float new_y)
 	// cub->play.diry = new_dirx * sin(-RSP) + cub->play.diry * cos(-RSP);
 }
 
-//probleme de caluls a ressoudre ici et a integrer das les directons  PASSER LES FONCTIONS EN INT ET RETOURNER DES 0 OU DES 1 !! CF : TESTED
+//probleme de calculs a ressoudre ici et a integrer das les directons  PASSER LES FONCTIONS EN INT ET RETOURNER DES 0 OU DES 1 !! CF : TESTED

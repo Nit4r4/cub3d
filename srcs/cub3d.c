@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/22 15:58:34 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:00:39 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,14 @@ int	main(int argc, char **argv)
 	cub = malloc(sizeof(t_cub));
 	if (argc != 2)
 		critical_errors(ERR_ARG);
-	init_game(cub);
 	parse_map(&cub->map, argv);
-	//init_player_pos(cub);
-	//definir position du player
-	cub->pos.x = 26 * 20 + 10;
-	cub->pos.y = 11 * 20 + 10;
+	init_game(cub);
+	//init_player_pos(cub, cardi);
+	//definir position du player selon la map 
+	cub->pos.x = (1 * CUBE) + (CUBE / 2);
+	cub->pos.y = (3 * CUBE) + (CUBE / 2);
 	cub->pos.a = 90;
-	
-	//draw_mmap(cub, 10, 20);
+	//
 	cub->mlx_ptr = mlx_init();
 	cub->win = mlx_new_window(cub->mlx_ptr, WIN_WID, WIN_HEI, "cub3D");
 	cub->img = mlx_new_image(cub->mlx_ptr, WIN_WID, WIN_HEI);
