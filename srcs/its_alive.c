@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:05:29 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/22 15:48:14 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/29 14:45:54 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	draw_line(int x2, int y2, t_cub *cub, int color)
 	double	delta_y;
 	int		pixels;
 
-	delta_x = (double)x2 - cub->pos.x;
-	delta_y = (double)y2 - cub->pos.y - 20;
-	delta_y = sin(cub->pos.pos) * SMP;
-	delta_x = cos(cub->pos.pos) * SMP;
+	delta_x = (double)x2 - cub->pos->x;
+	delta_y = (double)y2 - cub->pos->y - 20;
+	delta_y = sin(cub->pos->a) * SMP;
+	delta_x = cos(cub->pos->a) * SMP;
 	pixels = sqrt((delta_x * delta_x) +(delta_y * delta_y));
-	pixel_x = cub->pos.x;
-	pixel_y = cub->pos.y;
+	pixel_x = cub->pos->x;
+	pixel_y = cub->pos->y;
 	delta_x /= pixels;
 	delta_y /= pixels;
 	while (pixels)
@@ -42,8 +42,11 @@ void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
 {
 	char	*dst;
 
+	if ((0 < x && x < WIN_WID) && (0 < y && y < WIN_HEI))
+	{
 	dst = cub->mlx_add + (y * cub->mlx_len + x * (cub->mlx_bpp / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
+	}
 }
 
 int	a_little_bit( t_cub *cub)
@@ -51,8 +54,8 @@ int	a_little_bit( t_cub *cub)
 	t_vect	pos;
 	int		color;
 
-	pos.x = cub->pos.x;
-	pos.y = cub->pos.y;
+	pos.x = cub->pos->x;
+	pos.y = cub->pos->y;
 	color = create_trgb(0 , 200, 50, 50);
 	// pos.y = (cub->map.hei)/2;
 	// pos.x = (cub->map.wid)/2;
@@ -74,4 +77,3 @@ int	a_little_bit( t_cub *cub)
 	// mlx_put_image_to_window(cub->mlx_ptr, cub->win, cub->img, 0, 0);
 	return (0);
 }
-

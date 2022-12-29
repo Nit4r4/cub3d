@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/22 13:16:54 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/29 16:37:49 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@
 
 # define SMP 5
 # define SPD 0.1
+# define RSP degree_to_radian(1)
 
 /* DEFINE KEYS */
 # define ESC 53
@@ -126,51 +127,65 @@ typedef struct s_map
 	char	*cei;
 	int		floor;
 	int		ceiling;
+	int		size_tile;
 }		t_map;
 
 typedef struct s_vect
 {
-	int	pos;
-	int	x;
-	int	y;
+	float	a;
+	int		x;
+	int		y;
 }	t_vect;
 
 typedef struct s_player
 {
-	t_vect	pos;
-	t_vect	dir;
-	t_vect	old;
-	char	cardi;// ?
+	t_vect		pos;
+	char		dir;
+	float		distx;
+	float		disty;
+	float		dirx;
+	float		diry;
+	long double	x;
+	long double	y;
+	long double	angle;
+//	float	a; //angle
+	char		cardi;
+	int			vue;
+	int			initiated;
+	t_vect		old;
 }	t_player;
 
 typedef struct s_cub
 {
-	void	*mlx_ptr;
-	void	*img;
-	void	*win;
-	void	*mm;
-	char	*mlx_add;
-	int		mlx_bpp;
-	int		mlx_nd; //endian
-	int		mlx_len;
-	int		move;
-	int		move_x;
-	t_map	map;
-	t_vect	pos;
+	void		*mlx_ptr;
+	void		*img;
+	void		*win;
+	void		*mm;
+	char		*mlx_add;
+	int			mlx_bpp;
+	int			mlx_nd; //endian
+	int			mlx_len;
+	int			move;
+	int			move_x;
+	t_player	*play;
+	t_map		*map;
+	t_vect		*pos;
 }	t_cub;
 
 typedef struct s_ray
 {
-
 }	t_ray;
 
 /* UTILS */
 //void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
 
 /* MANDATORY */
-void	init_game(void);
+t_cub	*init_game(char **argv);
 void	init_pos(t_cub *cub);
 void	set_pos(t_cub *cub, double x, double y);
+// void	init_player_pos(t_cub *cub, int x, int y, char *cardi);
+void	init_player_pos(t_cub *cub);
+void	player_pos(t_cub *cub);
 
 void	critical_errors(char *str);
 void	error_close(char *str);
@@ -197,6 +212,19 @@ int		a_little_bit( t_cub *cub);
 void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
 int		move_your_body(int o_key, t_cub *cub);
 int		in_key_s_hook(int o_key, t_cub *cub);
+void	ft_camera_l(t_cub *cub);
+void	ft_camera_r(t_cub *cub);
+void	move_w_angle(t_cub *cub, float new_x, float new_y);
+void	move_s_angle(t_cub *cub, float new_x, float new_y);
+void	move_a_angle(t_cub *cub, float new_x, float new_y);
+void	move_d_angle(t_cub *cub, float new_x, float new_y);
+void	move_left_camera(t_cub *cub, float new_x, float new_y);
+void	move_right_camera(t_cub *cub, float new_x, float new_y);
+
+double	degree_to_radian(double degree);
+
+void	free_cub(t_cub *cub);
+
 //int	get_floor_or_ceiling(t_map *map, int i);
 
 /* BONUS (ON Y CROIT) */

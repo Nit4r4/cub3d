@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 13:02:46 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/20 16:28:03 by vferraro         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:12:57 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,31 @@ void	init_tabmap(t_map *map)
 	printf("%s\n", map->map);
 }
 
+void	parse_map(t_map *map, char **av)
+{
+	int	fd;
+	int	i;
+
+	check_file(av[1]);
+	fd = open(av[1], O_RDONLY);
+	if (fd == -1)
+		critical_errors(ERR_FD);
+	map->map = NULL;
+	map->nb_lines = 0;
+	map->len_line = 0;
+	get_map(map, fd);
+	if (!map->map)
+		critical_errors(ERROR);
+	map->nb_lines -= 6;
+	map->len_line -= 1;
+	map->size_tile = 64;
+	i = get_elems(map);
+	init_tabmap(map);
+	get_tabmap(map, i);
+	check_tabmap(map);
+}
+
+/*
 void printmap2d(t_map *map)
 {
 	int	x;
@@ -136,25 +161,4 @@ void printmap2d(t_map *map)
 		y++;
 	}
 }
-
-void	parse_map(t_map *map, char **av)
-{
-	int	fd;
-	int	i;
-
-	check_file(av[1]);
-	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
-		critical_errors(ERR_FD);
-	map->map = NULL;
-	map->nb_lines = 0;
-	map->len_line = 0;
-	get_map(map, fd);
-	map->nb_lines -= 6;
-	map->len_line -= 1;
-	i = get_elems(map);
-	init_tabmap(map);
-	get_tabmap(map, i);
-	check_tabmap(map);
-	// printmap2d(map);
-}
+*/
