@@ -6,85 +6,69 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 10:51:15 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/29 16:40:40 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/10 11:33:29 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include <stdio.h>
 
+#include "../include/cub3d.h"
+/*
 void	calloc_cub(t_cub *cub)
 {
 	cub->map = ft_calloc(sizeof(t_map), 1);
 	if (!cub->map)
 		critical_errors(ERROR);
-	cub->play = ft_calloc(sizeof(t_player), 1);
-	if (!cub->play)
-		critical_errors(ERROR);
-	cub->pos = ft_calloc(sizeof(t_vect), 1);
-	if (!cub->pos)
-		critical_errors(ERROR);
+}
+*/
+
+// void	init_degree(t_cub *cub) // fait par Claire
+// {
+// 	(read map)
+// 	if
+// }
+
+void	init_game(t_cub *cub)
+{
+	// cub->map.x = 0;
+	// cub->map.y = 0;
+	// cub->pos.x = 0;
+	// cub->pos.y = 0;
+	cub->map.mmap_size = 1;
+	mlx_init();
+	init_player_pos(cub);
+	init_player(cub);
+	cub->play.dirx = 0;
+	cub->play.diry = degree_to_radian(1);
+	cub->play.vue = WIN_HEI / 2;
+	cub->pos.a = 0;
 }
 
-t_cub	*init_game(char **argv)
+void	init_player_pos(t_cub *cub)
 {
-	t_cub	*cub;
+	int	x = 0;
+	int	y = 0;
 
-	cub = ft_calloc(sizeof(t_cub), 1);
-	if (!cub)
-		critical_errors(ERR_MALLOC);
-	calloc_cub(cub);
-	cub->mlx_ptr = mlx_init();
-	cub->play->dirx = 0;
-	cub->play->diry = degree_to_radian(1);
-	cub->play->vue = WIN_HEI / 2;
-	cub->pos->a = 0;
-	parse_map(cub->map, argv);
-	player_pos(cub);
-	return (cub);
-}
-
-int	init_player(char c, int x, int y, t_cub *cub)
-{
-	int	med;
-
-	med = cub->map->size_tile / 2;
-	if (c == 'N')
-		cub->play->angle = 90. * (M_PI / 180.0);
-	else if (c == 'W')
-		cub->play->angle = 180. * (M_PI / 180.0);
-	else if (c == 'E')
-		cub->play->angle = 0. * (M_PI / 180.0);
-	else if (c == 'S')
-		cub->play->angle = 270. * (M_PI / 180.0);
-	else
-		return (0);
-	cub->play->x = (float)(x * cub->map->size_tile + med);
-	cub->play->y = (float)(y * cub->map->size_tile + med);
-	return (1);
-}
-
-void	player_pos(t_cub *cub)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	if (cub->play->initiated == 1)
-		return ;
-	while (i < cub->map->nb_lines)
-	{
-		j = 0;
-		while (j < cub->map->len_line)
-		{
-			if (init_player(cub->map->tabmap[i][j], j, i, cub))
-			{
-				cub->play->initiated = 1;
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
+	cub->pos.x = x + 0.5;
+	cub->pos.y = y + 0.5;
+	if (cub->play.cardi == 'N')
+		cub->play.dir = 'N';
+	else if (cub->play.cardi == 'S')
+		cub->play.dir = 'S';
+	else if (cub->play.cardi == 'W')
+		cub->play.dir = 'W';
+	else if (cub->play.cardi == 'E')
+		cub->play.dir = 'E';
+	cub->play.cardi = '0';
+	/*definir position du player*/
+	// cub->pos.x = "N";
+	printf("len line : %d\n", cub->map.len_line);
+	printf("nb lines : %d\n", cub->map.nb_lines);
+	printf("mmap size : %d\n", cub->map.mmap_size);
+	// cub->pos.x = cub->map.nb_lines * cub->map.mmap_size + cub->map.mmap_size / 2;
+	// cub->pos.y = cub->map.len_line * cub->map.mmap_size + cub->map.mmap_size / 2;
+	printf("position x : %d\n", cub->pos.x);
+	printf("posiion y : %d\n", cub->pos.y);
 }
 
 // void	set_pos(t_cub *cub, double x, double y)
@@ -100,4 +84,39 @@ void	player_pos(t_cub *cub)
 // 	cub->map.hei = WIN_HEI;
 // 	set_pos(cub->move, 0, 0);
 // 	set_pos(cub->move_x, 0, 0);
+// }
+
+void	init_player(t_cub *cub)
+{
+	int	x;
+	int	y;
+
+	x = cub->map.x;
+	y = cub->map.y;
+
+		cub->pos.x = cub->map.x;
+		cub->pos.y = cub->map.y;
+}
+
+// void	init_player(t_cub *cub)
+// {
+// 	int		x;
+// 	int		y;
+// 	int		pos_x[x];
+// 	int		pos_y[y];
+
+// 	y = -1;
+// 	while (++y < cub->map.nb_lines)
+// 	{
+// 		x = -1;
+// 		while (++x < cub->map.len_line)
+// 		{
+// 			if (ft_strchr("NSWE", cub->map.tabmap[y][x]))
+// 			{
+// 				//cub->map.tabmap[cub->map.y][cub->map.x] = cub->map.tabmap[y][x];
+// 				cub->pos.x = cub->map.x;
+// 				cub->pos.y = cub->map.y;
+// 			}
+// 		}
+// 	}
 // }

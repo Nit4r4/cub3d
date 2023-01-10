@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/29 16:37:49 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/10 11:31:17 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 # define MM_WID 50
 # define IMG_X 32
 # define IMG_Y 32
+# define CUBE 64
 
 /*DEFINE CHAR */
 # define BYE "*********************\n* Good Bye ヾ(☆▽☆ ) *\n*********************\n"
@@ -71,7 +72,7 @@
 # endif
 
 # define SMP 5
-# define SPD 0.1
+# define SPD 10
 # define RSP degree_to_radian(1)
 
 /* DEFINE KEYS */
@@ -185,11 +186,12 @@ void	init_pos(t_cub *cub);
 void	set_pos(t_cub *cub, double x, double y);
 // void	init_player_pos(t_cub *cub, int x, int y, char *cardi);
 void	init_player_pos(t_cub *cub);
-void	player_pos(t_cub *cub);
+void	init_player(t_cub *cub);
 
 void	critical_errors(char *str);
 void	error_close(char *str);
 
+void	get_tabmap(t_map *map, int i);
 int		read_map(t_cub *cub, char *file);
 int		draw_mmap(t_cub *cub, int i, int j);
 
