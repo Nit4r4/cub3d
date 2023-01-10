@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 11:45:49 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/15 11:25:09 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/10 14:31:49 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,3 @@ char	*ft_strtrim_head(char *s1, char const *set)
 	free(s1);
 	return (res);
 }
-

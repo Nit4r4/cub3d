@@ -5,75 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 11:20:57 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/20 13:28:20 by creyt            ###   ########.fr       */
+/*   Created: 2022/12/15 11:08:43 by vferraro          #+#    #+#             */
+/*   Updated: 2023/01/10 14:31:26 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	color_map(t_cub *cub)
+void	check_walls(t_cub *cub, int x_wall, int y_wall)
 {
-	size_t	i;
-	size_t	j;
-
-	j = 0;
-	if (cub->win)
+	if (cub->map.tabmap[(int)floor(y_wall / cub->map.size_tile)]
+		[(int)floor(x_wall / cub->map.size_tile)] != '1')
 	{
-		while (j < WIN_HEI)
-		{
-			i = 0;
-			while (i < WIN_WID)
-			{
-				if (i % 50 == 0 || j % 50 == 0)
-					mlx_pixel_put(cub->mlx_ptr, cub->win, i, j, WHITE);
-				else
-				{
-					if ((i > 50 && j < 450) && (j > 50 && i < 750))
-						mlx_pixel_put(cub->mlx_ptr, cub->win, i, j, GREY);
-					else
-						mlx_pixel_put(cub->mlx_ptr, cub->win, i, j, BLACK);
-				}
-				i++;
-			}
-			j++;
-		}
-		a_little_bit(cub);
+		cub->pos.x = cub->play.dirx;
+		cub->pos.y = cub->play.diry;
 	}
-	else
-	{
-		free(cub->win);
-		critical_errors(ERR_WIN);
-	}
-	return (0);
 }
 
-int	draw_mmap(t_cub *cub, int i, int j)
-{
-	//char	read;
-	int	x = 0;
-	int	y = 0;
+// void	update_position(int o_key, t_cub *cub) --> EN DUR AVEC SPD, BESOIN ? PAS SUR....
+// {
+// 	float	speed;
 
-	while (cub->map.tabmap[y][x])
-	{
-		j = 0;
-		while (j < WIN_HEI)
-		{
-			if (cub->map.tabmap[y][x] == 0)
-				mlx_pixel_put(cub->mlx_ptr, cub->win, i * 10, j * 10, WHITE);
-			if (cub->map.tabmap[y][x] == 1)
-				mlx_pixel_put(cub->mlx_ptr, cub->win, i * 10, j * 10, BLACK);
-		}
-		j++;
-		i = 0;
-		while (i < WIN_HEI)
-		{
-			if (cub->map.tabmap[y][x] == 0)
-				mlx_pixel_put(cub->mlx_ptr, cub->win, i * 10, j * 10, WHITE);
-			if (cub->map.tabmap[y][x] == 1)
-				mlx_pixel_put(cub->mlx_ptr, cub->win, i * 10, j * 10, BLACK);
-		}
-		i++;
-	}
-	return (0);
-}
+// 	speed = (int)cub->map.size_tile / 7;
+// 	move_your_body(o_key, cub);
+// }
