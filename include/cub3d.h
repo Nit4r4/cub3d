@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/10 11:31:17 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/10 14:18:34 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,17 @@ typedef struct s_player
 	t_vect		old;
 }	t_player;
 
+typedef struct s_ray
+{
+	long double	x;
+	long double	y;
+	long double	delta;
+	char		side;
+	int			ver_hor;
+	long double	relative_angle;
+	float		angle;
+}	t_ray;
+
 typedef struct s_cub
 {
 	void		*mlx_ptr;
@@ -168,20 +179,17 @@ typedef struct s_cub
 	int			mlx_len;
 	int			move;
 	int			move_x;
-	t_player	*play;
-	t_map		*map;
-	t_vect		*pos;
+	t_player	play;
+	t_map		map;
+	t_vect		pos;
 }	t_cub;
 
-typedef struct s_ray
-{
-}	t_ray;
 
 /* UTILS */
 //void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
 
 /* MANDATORY */
-t_cub	*init_game(char **argv);
+void	init_game(t_cub *cub);
 void	init_pos(t_cub *cub);
 void	set_pos(t_cub *cub, double x, double y);
 // void	init_player_pos(t_cub *cub, int x, int y, char *cardi);
@@ -224,6 +232,15 @@ void	move_left_camera(t_cub *cub, float new_x, float new_y);
 void	move_right_camera(t_cub *cub, float new_x, float new_y);
 
 double	degree_to_radian(double degree);
+
+int close_the_window(t_cub *cub);
+
+/* RAYCASTING */
+int		get_wall(int x, int y, t_cub *cub, t_ray *ray);
+void	dup_ray(t_ray *ray, t_ray *dup);
+t_ray	*select_ray(t_cub *cub, float angle, t_ray *ray);
+void	get_vertical_ray(t_cub *cub, t_ray *ray, float angle);
+void	get_horizontal_ray(t_cub *cub, t_ray *ray, float angle);
 
 void	free_cub(t_cub *cub);
 

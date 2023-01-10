@@ -6,10 +6,11 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:05:29 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/10 11:34:07 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/10 13:42:29 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/cub3d.h"
 
 void	draw_line(int x2, int y2, t_cub *cub, int color)
 {
@@ -19,13 +20,13 @@ void	draw_line(int x2, int y2, t_cub *cub, int color)
 	double	delta_y;
 	int		pixels;
 
-	delta_x = (double)x2 - cub->pos.x;
-	delta_y = (double)y2 - cub->pos.y;
-	delta_y = sin(cub->pos.a * (M_PI / 180.0)) * SMP;
-	delta_x = cos(cub->pos.a * (M_PI / 180.0)) * SMP;
+	delta_x = (double)x2 - cub->pos->x;
+	delta_y = (double)y2 - cub->pos->y;
+	delta_y = sin(cub->pos->a * (M_PI / 180.0)) * SMP;
+	delta_x = cos(cub->pos->a * (M_PI / 180.0)) * SMP;
 	pixels = sqrt((delta_x * delta_x) +(delta_y * delta_y));
-	pixel_x = cub->pos.x;
-	pixel_y = cub->pos.y;
+	pixel_x = cub->pos->x;
+	pixel_y = cub->pos->y;
 	delta_x /= pixels;
 	delta_y /= pixels;
 	while (pixels)
@@ -52,8 +53,8 @@ int	a_little_bit( t_cub *cub)
 	t_vect	pos;
 	int		color;
 
-	pos.x = cub->pos.x;
-	pos.y = cub->pos.y;
+	pos.x = cub->pos->x;
+	pos.y = cub->pos->y;
 	color = create_trgb(0 , 200, 50, 50);
 	// pos.y = (cub->map.hei)/2;
 	// pos.x = (cub->map.wid)/2;

@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:02:15 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/10 11:32:29 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/10 13:33:21 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ int	color_map(t_cub *cub)
 	{
 		y = 0;
 		// printf("N=%c\n", cub->map.tabmap[11][26]);
-		while (y < cub->map.nb_lines)
+		while (y < cub->map->nb_lines)
 		{
 			x = 0;
-			while (x < cub->map.len_line)
+			while (x < cub->map->len_line)
 			{
-				if (cub->map.tabmap[y][x] == '1')
+				if (cub->map->tabmap[y][x] == '1')
 					put_rect(cub, x, y, BLOOD, size);
-				else if (cub->map.tabmap[y][x] == '0')
+				else if (cub->map->tabmap[y][x] == '0')
 					put_rect(cub, x, y, GREY, size);
-				else if (cub->map.tabmap[y][x] == 'N')
+				else if (cub->map->tabmap[y][x] == 'N')
 					put_rect(cub, x, y, GREY, size);
 				else
 					put_rect(cub, x, y, WHITE, size);

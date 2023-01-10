@@ -6,11 +6,24 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:13:43 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/10 11:34:30 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/10 13:44:52 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	exit_window(t_cub *cub)
+{
+	if (cub)
+		exit (0);
+	return (0);
+}
+
+int close_the_window(t_cub *cub)
+{
+	mlx_hook(cub->win, 17, 0L << 0, exit_window, cub);
+	return (0);
+}
 
 int	move_your_body(int o_key, t_cub *cub)
 {
@@ -18,20 +31,20 @@ int	move_your_body(int o_key, t_cub *cub)
 	int		direction;
 
 	direction = 1;
-	tmp_angle = cub->pos.a;
+	tmp_angle = cub->pos->a;
 	if (o_key == ESC)
 	{
 		ft_printf(BYE);
 		exit(EXIT_FAILURE);
 	}
 	if (o_key == KEY_A)
-		tmp_angle = (int)(cub->pos.a + 90);
+		tmp_angle = (int)(cub->pos->a + 90);
 	else if (o_key == KEY_W)
-		tmp_angle = cub->pos.a;
+		tmp_angle = cub->pos->a;
 	else if (o_key == KEY_S)
-		tmp_angle = (int)(cub->pos.a + 180);
+		tmp_angle = (int)(cub->pos->a + 180);
 	else if (o_key == KEY_D)
-		tmp_angle = (int)(cub->pos.a - 90);
+		tmp_angle = (int)(cub->pos->a - 90);
 	else if (o_key == ARROW_L)
 	{
 		ft_camera_l(cub);
@@ -51,8 +64,8 @@ int	move_your_body(int o_key, t_cub *cub)
 	if (direction == 0)
 		return (0);
 	tmp_angle *= (M_PI / 180.0);
-	cub->pos.x = cub->pos.x + roundf(cos(tmp_angle) * SPD);
-	cub->pos.y = cub->pos.y - roundf(sin(tmp_angle) * SPD);
+	cub->pos->x = cub->pos->x + roundf(cos(tmp_angle) * SPD);
+	cub->pos->y = cub->pos->y - roundf(sin(tmp_angle) * SPD);
 	return (0);
 }
 
@@ -63,18 +76,17 @@ int	in_key_s_hook(int o_key, t_cub *cub)
 	return (0);
 }
 
-
 /*TEST CALCULS ANGLE PI*/
 void	ft_camera_r(t_cub *cub)
 {
-	cub->pos.a -= SPD;
-	if (cub->pos.a <= 0.)
-		cub->pos.a = 360.;
+	cub->pos->a -= SPD;
+	if (cub->pos->a <= 0.)
+		cub->pos->a = 360.;
 }
 
 void	ft_camera_l(t_cub *cub)
 {
-	cub->pos.a += SPD;
-	if (cub->pos.a >= 360.)
-		cub->pos.a = 0.;
+	cub->pos->a += SPD;
+	if (cub->pos->a >= 360.)
+		cub->pos->a = 0.;
 }
