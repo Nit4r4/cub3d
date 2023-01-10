@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:05:29 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/10 10:14:35 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:16:27 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,18 @@ void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
 	dst = cub->mlx_add + (y * cub->mlx_len + x * (cub->mlx_bpp / 8));
 	*(unsigned int *)dst = color;
 	}
+}
+
+int	my_mlx_pixel_get(t_img *texture, int x, int y)
+{
+	unsigned int	color;
+
+	color = 0;
+	if ((0 <= x && x <= texture->width) && (0 <= y && y <= texture->height))
+	{
+		color = texture->addr[y * texture->len_line / 4 + x];
+	}
+	return (color);
 }
 
 int	a_little_bit( t_cub *cub)

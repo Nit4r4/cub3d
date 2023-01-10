@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:13:43 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/10 13:22:37 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:37:29 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	in_key_s_hook(int o_key, t_cub *cub)
 {
 	(void)o_key;
 	mlx_key_hook(cub->win, a_little_bit, cub);
-	mlx_hook(cub->win, RED_CROSS, 0L << 0, bouge_ton_bool, cub);
+	mlx_hook(cub->win, RED_CROSS, 1L << 2, bouge_ton_bool, cub);
 	return (0);
 }
 

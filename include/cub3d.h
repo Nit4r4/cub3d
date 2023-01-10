@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/10 13:13:06 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:27:30 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,28 @@ typedef struct s_player
 	t_vect	old;
 }	t_player;
 
+typedef struct s_ray
+{
+	long double		x;
+	long double		y;
+	long double		delta;
+	char			side;
+	int				ver_hor;
+	long double		relative_angle;
+	float			angle;
+}	t_ray;
+
+typedef struct s_img
+{
+	void	*img;
+	int		bits_nb;
+	int		len_line;
+//int		endien;
+//	int		*addr;
+	int		wid_img;
+	int		hei_img;
+}	t_img;
+
 typedef struct s_cub
 {
 	void		*mlx_ptr;
@@ -167,12 +189,10 @@ typedef struct s_cub
 	t_player	play;
 	t_map		map;
 	t_vect		pos;
+	t_ray		*ray;
+	t_img		img;
 }	t_cub;
 
-typedef struct s_ray
-{
-	
-}	t_ray;
 
 /* UTILS */
 //void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
@@ -186,7 +206,6 @@ void	init_player_pos(t_cub *cub);
 void	init_player(t_cub *cub);
 
 void	critical_errors(char *str);
-void	error_close(char *str);
 int		bouge_ton_bool(void);
 
 void	get_tabmap(t_map *map, int i);
@@ -226,9 +245,8 @@ double	degree_to_radian(double degree);
 
 //int	get_floor_or_ceiling(t_map *map, int i);
 
-/* BONUS (ON Y CROIT) */
+/* BONUS (ON Y CROIT ou pas...) */
 
-//MAIS BIEN SUR !!
-int	not_main(void);
-
+// RIP (hommage aux petites fonctions parties trop tot...)
+void	error_close(char *str);
 #endif
