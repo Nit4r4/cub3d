@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:05:29 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/29 17:15:22 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/10 10:14:35 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	draw_line(int x2, int y2, t_cub *cub, int color)
 void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
 {
 	char	*dst;
+
 	if ((0 < x && x < WIN_WID) && (0 < y && y < WIN_HEI))
 	{
 	dst = cub->mlx_add + (y * cub->mlx_len + x * (cub->mlx_bpp / 8));

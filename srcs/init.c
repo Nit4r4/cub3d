@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 10:51:15 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/29 17:20:49 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:16:20 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	init_player(t_cub *cub)
 
 	x = cub->map.x;
 	y = cub->map.y;
-	
+
 		cub->pos.x = cub->map.x;
 		cub->pos.y = cub->map.y;
 }

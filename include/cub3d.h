@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/29 15:59:07 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:13:06 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef struct s_map
 	char	*cei;
 	int		floor;
 	int		ceiling;
+	int		size_tile;
 }		t_map;
 
 typedef struct s_vect
@@ -186,6 +187,7 @@ void	init_player(t_cub *cub);
 
 void	critical_errors(char *str);
 void	error_close(char *str);
+int		bouge_ton_bool(void);
 
 void	get_tabmap(t_map *map, int i);
 int		read_map(t_cub *cub, char *file);
@@ -218,6 +220,7 @@ void	move_a_angle(t_cub *cub, float new_x, float new_y);
 void	move_d_angle(t_cub *cub, float new_x, float new_y);
 void	move_left_camera(t_cub *cub, float new_x, float new_y);
 void	move_right_camera(t_cub *cub, float new_x, float new_y);
+void	check_walls(t_cub *cub, int x_wall, int y_wall);
 
 double	degree_to_radian(double degree);
 

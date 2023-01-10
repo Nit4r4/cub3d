@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/29 17:00:39 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:19:11 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@ int	not_main(void)
 
 	//a_little_bit(mlx_ptr, win);
 	mlx_hook(cub->win, 2, 1L << 0, move_your_body, cub);
+	mlx_hook(cub->win, RED_CROSS, 0, bouge_ton_bool, cub);
 	mlx_loop_hook(cub->mlx_ptr, color_map, cub); //soucis de memoire et de exe speed
 	//mlx_clear_window(cub->mlx_ptr, cub->win);
 	//mlx_put_image_to_window(mlx_ptr, win, cub->img, 800, 500);
-	//mlx_key_hook(win, in_key_s_hook, cub);
+	mlx_key_hook(cub->win, in_key_s_hook, cub);
 	//in_key_s_hook(game);
 	//move_your_body(mlx_ptr, win, perso);
 	mlx_loop(cub->mlx_ptr);
