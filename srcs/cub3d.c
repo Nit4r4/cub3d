@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/29 16:40:23 by creyt            ###   ########.fr       */
+/*   Updated: 2022/12/29 16:50:38 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	main(int argc, char **argv)
 	cub->pos->x = 26 * 20 + 10;
 	cub->pos->y = 11 * 20 + 10;
 	cub->pos->a = 90;
-
 	//draw_mmap(cub, 10, 20);
 	cub->mlx_ptr = mlx_init();
 	cub->win = mlx_new_window(cub->mlx_ptr, WIN_WID, WIN_HEI, "cub3D");
