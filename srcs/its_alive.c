@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:05:29 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/10 14:16:27 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:07:56 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
 	}
 }
 
-int	my_mlx_pixel_get(t_img *texture, int x, int y)
+int	my_mlx_pixel_get(t_texture *tex, int x, int y)
 {
 	unsigned int	color;
 
 	color = 0;
-	if ((0 <= x && x <= texture->width) && (0 <= y && y <= texture->height))
+	if ((0 <= x && x <= tex->wid_tex) && (0 <= y && y <= tex->hei_tex))
 	{
-		color = texture->addr[y * texture->len_line / 4 + x];
+		color = tex->addr[y * tex->len_line / 4 + x];
 	}
 	return (color);
 }
@@ -69,9 +69,6 @@ int	a_little_bit( t_cub *cub)
 	pos.x = cub->pos.x;
 	pos.y = cub->pos.y;
 	color = create_trgb(0 , 200, 50, 50);
-	// pos.y = (cub->map.hei)/2;
-	// pos.x = (cub->map.wid)/2;
-
 	my_mlx_pixel_put(cub, pos.x - 1, pos.y, color);
 	my_mlx_pixel_put(cub, pos.x - 2, pos.y, color);
 	my_mlx_pixel_put(cub, pos.x + 1, pos.y, color);
@@ -80,17 +77,6 @@ int	a_little_bit( t_cub *cub)
 	my_mlx_pixel_put(cub, pos.x, pos.y - 2, color);
 	my_mlx_pixel_put(cub, pos.x, pos.y + 1, color);
 	my_mlx_pixel_put(cub, pos.x, pos.y + 2, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 1, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 2, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 3, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 4, color);
-	// draw_line(pos.x, pos.y + 100, cub, BLOOD);
-	// put_rect(cub, pos.x, pos.y, BLOOD, 100);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 1, BLOOD);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 2, BLOOD);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 3, BLOOD);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 4, BLOOD);
-	// mlx_put_image_to_window(cub->mlx_ptr, cub->win, cub->img, 0, 0);
 	return (0);
 }
 

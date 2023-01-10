@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:12:38 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/10 14:27:52 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:08:28 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	get_all_rays(t_cub *cub)
 	}
 }
 
-int	choose_texture(t_cub *cub, t_ray *ray, int y, int size)
+int	choose_image(t_cub *cub, t_ray *ray, int y, int size)
 {
 	int	s;
 	int	color;
@@ -47,15 +47,15 @@ int	choose_texture(t_cub *cub, t_ray *ray, int y, int size)
 	if (ray->side == 'W')
 		s = 3;
 	if (ray->ver_hor == 0)
-		color = (my_mlx_pixel_get(&cub->img[s],
+		color = (my_mlx_pixel_get(&cub->tex[s],
 					floor(((int)ray->x % cub->map.size_tile)
-						* cub->img[s].wid / cub->map.size_tile),
-					floor(y * cub->img[s].height / size)));
+						* cub->tex[s].wid_tex / cub->map.size_tile),
+					floor(y * cub->tex[s].hei_tex / size)));
 	if (ray->ver_hor == 1)
 		color = (my_mlx_pixel_get(&cub->img[s],
 					floor(((int)ray->y % cub->map.size_tile)
-						* cub->img[s].width / cub->map.size_tile),
-					floor(y * cub->img[s].height / size)));
+						* cub->tex[s].wid_tex / cub->map.size_tile),
+					floor(y * cub->tex[s].hei_tex / size)));
 	return (color);
 }
 
@@ -77,10 +77,10 @@ void	display_ray(t_cub *cub, int x, int j)
 			cub->ray[j].side = cub->ray[j + 10].side;
 		color = choose_texture(cub, &cub->ray[j], size + i, size * 2);
 		my_mlx_pixel_put(cub->mlx_ptr, x,
-			WIN_HEI / 2 + i - cub->pov_y, color);
+			WIN_HEI / 2 + i - cub->play.vue, color);
 		color = choose_texture(cub, &cub->ray[j], size - i, size * 2);
 		my_mlx_pixel_put(cub->mlx_ptr, x,
-			WIN_HEI / 2 - i - cub->pov_y, color);
+			WIN_HEI / 2 - i - cub->play.vue, color);
 		i++;
 	}
 }

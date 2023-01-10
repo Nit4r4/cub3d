@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/10 14:27:30 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:26:28 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@
 
 # define SMP 5
 # define SPD 10
-# define RSP degree_to_radian(1)
+# define RSP degree_to_radian(1) //modifie
 
 /* DEFINE KEYS */
 # define ESC 53
@@ -103,6 +103,7 @@
 # define ERR_MAP_PLAYER "Error\nInvalid player map\n"
 # define ERR_KEY "Misclick ? Touche non valide\n"
 # define ERR_WIN "> No window here...sooooo dark\n"
+# define ERR_TEX "Error\nTexture not found\n"
 
 /* ACTIONS MESSAGES */
 # define M_MSG "Inclure le message voulu ici"
@@ -163,16 +164,16 @@ typedef struct s_ray
 	float			angle;
 }	t_ray;
 
-typedef struct s_img
+typedef struct s_texture
 {
-	void	*img;
+	void	*tex;
 	int		bits_nb;
 	int		len_line;
-//int		endien;
-//	int		*addr;
-	int		wid_img;
-	int		hei_img;
-}	t_img;
+	int		endien;
+	int		*addr;
+	int		wid_tex;
+	int		hei_tex;
+}	t_texture;
 
 typedef struct s_cub
 {
@@ -190,7 +191,7 @@ typedef struct s_cub
 	t_map		map;
 	t_vect		pos;
 	t_ray		*ray;
-	t_img		img;
+	t_texture	tex;
 }	t_cub;
 
 
@@ -242,6 +243,10 @@ void	move_right_camera(t_cub *cub, float new_x, float new_y);
 void	check_walls(t_cub *cub, int x_wall, int y_wall);
 
 double	degree_to_radian(double degree);
+
+int		choose_image(t_cub *cub, t_ray *ray, int y, int size);
+void	display_ray(t_cub *cub, int x, int j);
+void	display_rays(t_cub *cub);
 
 //int	get_floor_or_ceiling(t_map *map, int i);
 
