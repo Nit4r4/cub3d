@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:12:38 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/10 15:08:28 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:48:37 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void	display_ray(t_cub *cub, int x, int j)
 			cub->ray[j].side = cub->ray[j - 10].side;
 		else if (cub->ray[j].side == -1 && j < WIN_WID / 2)
 			cub->ray[j].side = cub->ray[j + 10].side;
-		color = choose_texture(cub, &cub->ray[j], size + i, size * 2);
+		color = choose_image(cub, &cub->ray[j], size + i, size * 2);
 		my_mlx_pixel_put(cub->mlx_ptr, x,
 			WIN_HEI / 2 + i - cub->play.vue, color);
-		color = choose_texture(cub, &cub->ray[j], size - i, size * 2);
+		color = choose_image(cub, &cub->ray[j], size - i, size * 2);
 		my_mlx_pixel_put(cub->mlx_ptr, x,
 			WIN_HEI / 2 - i - cub->play.vue, color);
 		i++;

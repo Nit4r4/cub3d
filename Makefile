@@ -12,9 +12,10 @@ CYAN = \033[36m
 
 NAME = cub3d
 
-SRCS 	= srcs/cub3d.c srcs/init.c srcs/define_map.c srcs/parse_map.c srcs/check_map.c \
+SRCS 	= srcs/cub3d.c srcs/init.c srcs/parse_map.c srcs/check_map.c \
 		srcs/map_utils.c srcs/free.c srcs/mini_libft.c srcs/colors.c srcs/its_alive.c \
-		srcs/key_hook.c srcs/degree.c srcs/play_directions.c srcs/cam_directions.c 
+		srcs/key_hook.c srcs/degree.c \
+		srcs/raycasting.c srcs/raycasting2.c srcs/process_minimap.c srcs/process_map.c
 
 OBJS 	= ${SRCS:.c=.o}
 MAIN	= srcs/cub3d.c
@@ -47,7 +48,7 @@ ${NAME}:	${OBJS}
 					@$(MAKE) -C $(LBFT_PATH)
 #					@$(MAKE) -C $(MLX_PATH)
 					@$(MAKE) -C $(PRINTF_PATH)
-#					@$(MAKE) -C $(GNL_PATH)
+					@$(MAKE) -C $(GNL_PATH)
 					@$(CC) $(CFLAGS) ${OBJS} -o $(NAME) $(LIB) $(MLXFLAGS)
 					@printf "$(BLUE)🍵 Creating $(NAME)$(RESET)\n"
 					@sleep 0.2
@@ -64,7 +65,7 @@ clean:
 					@$(MAKE) -C $(LBFT_PATH) clean
 #					@$(MAKE) -C $(MLX_PATH) clean
 					@$(MAKE) -C $(PRINTF_PATH) clean
-#					@$(MAKE) -C $(GNL_PATH) fclean
+					@$(MAKE) -C $(GNL_PATH) fclean
 					@echo "$(GREEN2)📚 Cleaning paths"
 					@sleep 0.2
 					@echo "$(YELLOW)Cub3D is all clean ! $(ORANGE)(ﾉ◕ヮ◕)ﾉ$(YELLOW)*:･ﾟ✧"
@@ -76,7 +77,7 @@ fclean: 	clean
 					@$(MAKE) -C $(LBFT_PATH) fclean
 					@$(MAKE) -C $(PRINTF_PATH) fclean
 #					@$(MAKE) -C $(MLX_PATH) fclean
-#					@$(MAKE) -C $(GNL_PATH) fclean
+					@$(MAKE) -C $(GNL_PATH) fclean
 					@printf "\r$(PURP)----- Deleting library ----\n"
 					@echo 🗑 "\033[31mEverything is deleting now !"
 					@sleep 0.2

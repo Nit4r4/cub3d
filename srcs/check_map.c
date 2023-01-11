@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 08:46:48 by vferraro          #+#    #+#             */
-/*   Updated: 2022/12/29 13:20:06 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/11 13:37:12 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ void	check_file(char *str)
 		return ;
 	}
 	critical_errors(ERR_FILE);
+}
+
+int	colorfool(int color)
+{
+	if (color < 0 || color > 255)
+		critical_errors(ERR_COLOR);
+	return (color);
 }
 
 void	check_border_map(t_map *map, int x, int y)

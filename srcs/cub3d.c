@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/10 13:58:20 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/11 13:15:19 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-// void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title)
-// int	main(int argc, char **argv)
-// {
-// 	t_cub	cub;
-
-// 	if (argc >= 2)
-// 	{
-// 		printf("%d\n", read_map(&cub, argv[2]));
-// 	}
-// }
 
 int	main(int argc, char **argv)
 {
@@ -32,13 +21,14 @@ int	main(int argc, char **argv)
 		critical_errors(ERR_ARG);
 	parse_map(&cub->map, argv);
 	init_game(cub);
+	mlx_loop_hook(cub->mlx_ptr, loop_hook, cub);
 	//init_player_pos(cub, cardi);
 	//definir position du player selon la map 
 	cub->pos.x = (1 * CUBE) + (CUBE / 2);
 	cub->pos.y = (3 * CUBE) + (CUBE / 2);
 	cub->pos.a = 90;
 	//
-	cub->mlx_ptr = mlx_init();
+	//cub->mlx_ptr = mlx_init();
 	cub->win = mlx_new_window(cub->mlx_ptr, WIN_WID, WIN_HEI, "cub3D");
 	cub->img = mlx_new_image(cub->mlx_ptr, WIN_WID, WIN_HEI);
 	cub->mlx_add = mlx_get_data_addr(cub->img, &cub->mlx_bpp, &cub->mlx_len, &cub->mlx_nd);

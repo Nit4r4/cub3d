@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 12:43:02 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/10 14:19:22 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:47:33 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	get_vertical_ray(t_cub *cub, t_ray *ray, float angle)
 	int	direction;
 
 	direction = 1;
-	if (angle > 0 && angle < degree_to_rad(180))
+	if (angle > 0 && angle < degree_to_radian(180))
 		ray->y = floor(cub->pos.y / cub->map.size_tile)
 			* cub->map.size_tile - 0.001;
 	else
@@ -97,7 +97,7 @@ void	get_horizontal_ray(t_cub *cub, t_ray *ray, float angle)
 	int	direction;
 
 	direction = 1;
-	if (angle <= degree_to_rad(90) || angle >= degree_to_rad(270))
+	if (angle <= degree_to_radian(90) || angle >= degree_to_radian(270))
 		ray->x = floor(cub->pos.x / cub->map.size_tile)
 			* cub->map.size_tile + cub->map.size_tile;
 	else
