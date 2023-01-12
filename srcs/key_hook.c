@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:13:43 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/12 11:51:26 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 12:14:35 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
 /* close the window */
-int	bouge_ton_bool(void)
+int	bouge_ton_bool(t_cub *cub)
 {
 	ft_printf(BYE);
+	free_cub(cub);
 	exit(EXIT_FAILURE);
 }
 
@@ -68,7 +69,7 @@ int	in_key_s_hook(int o_key, t_cub *cub)
 	direction = 1;
 	tmp_angle = cub->pos->a;
 	if (o_key == ESC)
-		bouge_ton_bool();
+		bouge_ton_bool(cub);
 	if (o_key == KEY_A)
 		tmp_angle = (int)(cub->pos->a + 90);
 	else if (o_key == KEY_W)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/12 11:49:53 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 12:13:44 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@
 # define IMG_Y 32
 # define CUBE 64
 
-/*DEFINE CHAR */
+/* DEFINE CHAR */
 # define BYE "*********************\n* Good Bye ヾ(☆▽☆ ) *\n*********************\n"
 # define IS_SPACE " \n\t\v\f\r"
 # define IS_PLAYER "NSWE"
@@ -62,7 +62,7 @@
 #  define IS_MAP "01NSWE"
 # endif
 
-/*DEFINE VALUES */
+/* DEFINE VALUES */
 # define SMP 5
 # define SPD 10
 # define RSP degree_to_radian(1) //modifie
@@ -99,6 +99,7 @@
 # define ERR_TEX "Error\nTexture not found\n"
 
 /* STRUCT */
+
 typedef struct s_grid
 {
 	int	i;
@@ -143,7 +144,6 @@ typedef struct s_vect
 typedef struct s_player
 {
 	t_vect	pos;
-	int		init;
 	char	dir;
 	float	distx;
 	float	disty;
@@ -226,6 +226,11 @@ int		color_map(t_cub *cub);
 int		create_trgb(int t, int r, int g, int b);
 void	put_rect(t_cub *cub, int x, int y, int color, int size);
 
+/* cam_directions.c // RIP??
+void	move_left_camera(t_cub *cub, float new_x, float new_y);
+void	move_right_camera(t_cub *cub, float new_x, float new_y);
+*/
+
 /* play_directions.c
 void	move_w_angle(t_cub *cub, float new_x, float new_y);
 void	move_s_angle(t_cub *cub, float new_x, float new_y);
@@ -240,7 +245,7 @@ int		my_mlx_pixel_get(t_texture *tex, int x, int y);
 int		a_little_bit( t_cub *cub);
 
 /* key_hook.c */
-int		bouge_ton_bool(void);
+int		bouge_ton_bool(t_cub *cub);
 int		move_your_body(int o_key, t_cub *cub);
 int		in_key_s_hook(int o_key, t_cub *cub);
 void	ft_tmp_angle(t_cub *cub);
@@ -268,8 +273,9 @@ void	put_rectangles(t_grid *grid, t_cub *cub);
 void	get_grid(t_cub *cub);
 
 /*process_map.c */
+void	put_background(t_cub *cub);
 void	check_walls(t_cub *cub, int x_wall, int y_wall);
-int		loop_hook(t_cub *cub);
+int 	loop_hook(t_cub *cub);
 
 /* free.c */
 void	free_tab(char **tab, int len);
@@ -283,16 +289,9 @@ size_t	ft_strlen_c(char *str, char c);
 char	*ft_strtrim_head(char *s1, char const *set);
 int		is_map(char c);
 
-int		ft_abs(int x);
+/* One more thing... */
+int	ft_abs(int x);
 double	degree_to_radian(double degree);
-
-/*
-void	init_pos(t_cub *cub);
-void	set_pos(t_cub *cub, double x, double y);
-// void	init_player_pos(t_cub *cub, int x, int y, char *cardi);
-int		read_map(t_cub *cub, char *file);
-int		draw_mmap(t_cub *cub, int i, int j);
-*/
 
 /* BONUS (ON Y CROIT ou pas...) */
 
