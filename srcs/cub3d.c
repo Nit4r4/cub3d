@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/12 11:14:15 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:41:54 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	mlx_hook(cub->win, RED_CROSS, 1L << 2, bouge_ton_bool, cub);
 	//mlx_key_hook(cub->win, in_key_s_hook, cub);
 
-	//mlx_loop_hook(cub->mlx_ptr, color_map, cub); // fonctinne maispasbon
+	//mlx_loop_hook(cub->mlx_ptr, color_map, cub); // fonctinne mais pas le bon
 
 	mlx_loop_hook(cub->mlx_ptr, loop_hook, cub);
 	//mlx_loop_hook(cub->mlx_ptr, draw_mmap, cub);

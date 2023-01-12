@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/12 11:10:38 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:34:14 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,6 @@
 # define BLUE "\033[34m"
 # define CYAN "\033[36m"
 
-/* DEFINE IMAGES */
-# define IMG_G "./img_xpm/vide_HERBE_32x32.xpm" //les images a changer ??
-# define IMG_W "./img_xpm/mur_arbre_32x32C2.xpm"
-# define IMG_P "./img_xpm/fox.xpm"
-# define IMG_PL "./img_xpm/foxL.xpm"
-# define IMG_I "./img_xpm/item_32x32_smallApple.xpm"
-# define IMG_E "./img_xpm/end32x32_flip.xpm"
-# define ERR_TXT "Error\n"
-
 /* DEFINE SIZES */
 # define WIN_WID 800
 # define WIN_HEI 500
@@ -63,7 +54,7 @@
 # define IMG_Y 32
 # define CUBE 64
 
-/*DEFINE CHAR */
+/* DEFINE CHAR */
 # define BYE "*********************\n* Good Bye ヾ(☆▽☆ ) *\n*********************\n"
 # define IS_SPACE " \n\t\v\f\r"
 # define IS_PLAYER "NSWE"
@@ -71,6 +62,7 @@
 #  define IS_MAP "01NSWE"
 # endif
 
+/* DEFINE VALUES */
 # define SMP 5
 # define SPD 10
 # define RSP degree_to_radian(1) //modifie
@@ -105,9 +97,6 @@
 # define ERR_KEY "Misclick ? Touche non valide\n"
 # define ERR_WIN "> No window here...sooooo dark\n"
 # define ERR_TEX "Error\nTexture not found\n"
-
-/* ACTIONS MESSAGES */
-# define M_MSG "Inclure le message voulu ici"
 
 /* STRUCT */
 
@@ -160,7 +149,6 @@ typedef struct s_player
 	float	disty;
 	float	dirx;
 	float	diry;
-//	float	a; //angle
 	char	cardi;
 	int		vue;
 	t_vect	old;
@@ -202,16 +190,12 @@ typedef struct s_cub
 	int			move_x;
 	int			nbr_t;
 	int			minimap;
-	t_player	play;
-	t_map		map;
-	t_vect		pos;
+	t_player	*play;
+	t_map		*map;
+	t_vect		*pos;
 	t_ray		*ray;
 	t_texture	*tex;
 }	t_cub;
-
-
-/* UTILS */
-//void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title);
 
 /* MANDATORY */
 /* init.c */
@@ -304,27 +288,9 @@ size_t	ft_strlen_c(char *str, char c);
 char	*ft_strtrim_head(char *s1, char const *set);
 int		is_map(char c);
 
+/* One more thing... */
 int	ft_abs(int x);
-
-/*
-void	init_pos(t_cub *cub);
-void	set_pos(t_cub *cub, double x, double y);
-// void	init_player_pos(t_cub *cub, int x, int y, char *cardi);
-
-
-int		read_map(t_cub *cub, char *file);
-int		draw_mmap(t_cub *cub, int i, int j);
-
-
-
-
-*/
-
 double	degree_to_radian(double degree);
-
-
-
-//int	get_floor_or_ceiling(t_map *map, int i);
 
 /* BONUS (ON Y CROIT ou pas...) */
 
