@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 13:02:46 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/10 15:49:17 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 10:44:57 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,25 +118,6 @@ void	init_tabmap(t_map *map)
 	printf("%s\n", map->map);
 }
 
-void printmap2d(t_map *map)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < map->nb_lines)
-	{
-		x = 0;
-		while (x < map->len_line)
-		{
-			printf("%c", map->tabmap[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-}
-
 void	parse_map(t_map *map, char **av)
 {
 	int	fd;
@@ -150,6 +131,8 @@ void	parse_map(t_map *map, char **av)
 	map->nb_lines = 0;
 	map->len_line = 0;
 	get_map(map, fd);
+	if (!map)
+		critical_errors(ERR_MAP_INFO);
 	map->nb_lines -= 6;
 	map->len_line -= 1;
 	map->size_tile = 64;
@@ -158,5 +141,4 @@ void	parse_map(t_map *map, char **av)
 	init_tabmap(map);
 	get_tabmap(map, i);
 	check_tabmap(map);
-	// printmap2d(map);
 }

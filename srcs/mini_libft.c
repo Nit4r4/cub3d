@@ -6,18 +6,11 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 11:45:49 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/10 14:31:49 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 09:54:49 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int	ft_isspace(int c)
-{
-	if (c == ' ' || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
 
 char	*ft_strjoin_cub(char *s1, char *s2, int mode)
 {

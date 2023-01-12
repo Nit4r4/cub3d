@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 14:33:20 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/10 15:49:20 by creyt            ###   ########.fr       */
+/*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
+/*   Updated: 2023/01/12 10:42:31 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@
 # define BLUE "\033[34m"
 # define CYAN "\033[36m"
 
-
 /* DEFINE SIZES */
 # define WIN_WID 800
 # define WIN_HEI 500
@@ -67,7 +66,7 @@
 
 # define SMP 5
 # define SPD 10
-# define RSP 1
+# define RSP degree_to_radian(1) //modifie
 
 /* DEFINE KEYS */
 # define ESC 53
@@ -91,12 +90,14 @@
 # define ERR_MAP_INFO " > infos on the map are wrong\n"
 # define MAP_ERR_HO "The map is like the Emmental!\n"
 # define MAP_ERR_HO_2 "The map is like the Gruyere!\n"
+# define ERR_COLOR "Error\nWrong color\n"
 # define ERR_MALLOC "Error\nCannot allocate memory\n"
 # define ERR_MAP_CONTENT "Error\nInvalid content map\n"
 # define ERR_MAP_SIZE "Error\nInvalid size map\n"
 # define ERR_MAP_PLAYER "Error\nInvalid player map\n"
 # define ERR_KEY "Misclick ? Touche non valide\n"
 # define ERR_WIN "> No window here...sooooo dark\n"
+# define ERR_TEX "Error\nTexture not found\n"
 
 /* STRUCT */
 typedef struct s_grid
@@ -108,7 +109,7 @@ typedef struct s_grid
 	int	p_x;
 	int	p_y;
 	int	size;
-}t_grid;
+}	t_grid;
 
 typedef struct s_map
 {
@@ -143,6 +144,7 @@ typedef struct s_vect
 typedef struct s_player
 {
 	t_vect	pos;
+	int		init;
 	char	dir;
 	float	distx;
 	float	disty;
@@ -166,10 +168,10 @@ typedef struct s_ray
 
 typedef struct s_texture
 {
-	void	*img;
+	void	*tex;
 	int		bits_nb;
 	int		len_line;
-//int		endien;
+	int		endien;
 	int		*addr;
 	int		wid_tex;
 	int		hei_tex;
@@ -187,71 +189,112 @@ typedef struct s_cub
 	int			mlx_len;
 	int			move;
 	int			move_x;
-	t_player	play;
-	t_map		map;
-	t_vect		pos;
+	int			nbr_t;
+	int			minimap;
+	t_player	*play;
+	t_map		*map;
+	t_vect		*pos;
 	t_ray		*ray;
-	t_texture	tex;
+	t_texture	*tex;
 }	t_cub;
 
-
 /* MANDATORY */
+/* init.c */
+t_cub	*init_game(char **arv);
+void	init_player(t_cub *cub);
+void	init_player_pos(t_cub *cub);
 
-/* error message */
-void	critical_errors(char *str);
-
-/* parse */
+/* parse_map.c */
 void	get_tabmap(t_map *map, int i);
-int		read_map(t_cub *cub, char *file);
-int		draw_mmap(t_cub *cub, int i, int j);
-void	check_file(char *str);
 void	parse_map(t_map *map, char **av);
 
-/*map_utils */
-
-void	init_game(t_cub *cub);
-void	init_pos(t_cub *cub);
-void	set_pos(t_cub *cub, double x, double y);
-// void	init_player_pos(t_cub *cub, int x, int y, char *cardi);
-void	init_player_pos(t_cub *cub);
-void	init_player(t_cub *cub);
-
-int		bouge_ton_bool(void);
-
-char	*ft_strjoin_cub(char *s1, char *s2, int mode);
-int		ft_isspace(int c);
-int		ft_nbrlen(int n);
-size_t	ft_strlen_c(char *str, char c);
-char	*ft_strtrim_head(char *s1, char const *set);
+/* check_map.c */
+void	critical_errors(char *str); // a changer de fichier ?
+void	check_file(char *str);
+int		colorfool(int color);
+void	check_border_map(t_map *map, int x, int y);
+void	check_center_map(t_map *map, int x, int y);
 void	check_tabmap(t_map *map);
-int		get_elems(t_map *map);
-int		is_map(char c);
 
+/* map_utils.c */
+int		ft_isspace(int c);
+int		get_floor_or_ceiling(t_map *map, int i);
+int		get_elems(t_map *map);
+
+/* colors.c */
 int		color_map(t_cub *cub);
 int		create_trgb(int t, int r, int g, int b);
 void	put_rect(t_cub *cub, int x, int y, int color, int size);
 
-int		a_little_bit( t_cub *cub);
-void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
-int		move_your_body(int o_key, t_cub *cub);
-int		in_key_s_hook(int o_key, t_cub *cub);
-void	ft_camera_l(t_cub *cub);
-void	ft_camera_r(t_cub *cub);
+/* cam_directions.c // RIP??
+void	move_left_camera(t_cub *cub, float new_x, float new_y);
+void	move_right_camera(t_cub *cub, float new_x, float new_y);
+*/
+
+/* play_directions.c
 void	move_w_angle(t_cub *cub, float new_x, float new_y);
 void	move_s_angle(t_cub *cub, float new_x, float new_y);
 void	move_a_angle(t_cub *cub, float new_x, float new_y);
 void	move_d_angle(t_cub *cub, float new_x, float new_y);
-void	move_left_camera(t_cub *cub, float new_x, float new_y);
-void	move_right_camera(t_cub *cub, float new_x, float new_y);
+*/
+
+/* its_alive.c */
+void	draw_line(int x2, int y2, t_cub *cub, int color);
+void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
+int		my_mlx_pixel_get(t_texture *tex, int x, int y);
+int		a_little_bit( t_cub *cub);
+
+/* key_hook.c */
+int		bouge_ton_bool(void);
+int		move_your_body(int o_key, t_cub *cub);
+int		in_key_s_hook(int o_key, t_cub *cub);
+void	ft_camera_l(t_cub *cub);
+void	ft_camera_r(t_cub *cub);
+
+/* raycasting.c */
+int		get_wall(int x, int y, t_cub *cub, t_ray *ray);
+t_ray	*select_ray(t_cub *cub, float angle, t_ray *ray);
+void	get_vertical_ray(t_cub *cub, t_ray *ray, float angle);
+void	get_horizontal_ray(t_cub *cub, t_ray *ray, float angle);
+
+/* raycasting2.c */
+void	get_all_rays(t_cub *cub);
+int		choose_image(t_cub *cub, t_ray *ray, int y, int size);
+void	display_ray(t_cub *cub, int x, int j);
+void	display_rays(t_cub *cub);
+
+/* process_minimap.c */
+void	init_grid(t_grid *grid, t_cub *cub);
+void	put_rectangle(int x, int y, t_cub *cub, int color);
+void	put_rectangles(t_grid *grid, t_cub *cub);
+void	get_grid(t_cub *cub);
+
+/*process_map.c */
 void	check_walls(t_cub *cub, int x_wall, int y_wall);
-int		loop_img(t_cub *cub);
+int		loop_hook(t_cub *cub);
 
-double	degree_to_radian(double degree);
-
-/* free */
-void	free_cub(t_cub *cub);
-void	free_map(t_map *map);
+/* free.c */
 void	free_tab(char **tab, int len);
+void	free_map(t_map *map);
+void	free_cub(t_cub *cub);
+
+/* mini_libft.c */
+char	*ft_strjoin_cub(char *s1, char *s2, int mode);
+int		ft_nbrlen(int n);
+size_t	ft_strlen_c(char *str, char c);
+char	*ft_strtrim_head(char *s1, char const *set);
+int		is_map(char c);
+
+int		ft_abs(int x);
+
+/*
+void	init_pos(t_cub *cub);
+void	set_pos(t_cub *cub, double x, double y);
+// void	init_player_pos(t_cub *cub, int x, int y, char *cardi);
+int		read_map(t_cub *cub, char *file);
+int		draw_mmap(t_cub *cub, int i, int j);
+*/
+double	degree_to_radian(double degree);
 //int	get_floor_or_ceiling(t_map *map, int i);
 
 /* BONUS (ON Y CROIT ou pas...) */

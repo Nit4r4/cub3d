@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 15:27:46 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/10 15:49:18 by creyt            ###   ########.fr       */
+/*   Created: 2023/01/11 10:46:50 by creyt             #+#    #+#             */
+/*   Updated: 2023/01/12 11:21:10 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../include/cub3d.h"
 
 void	put_background(t_cub *cub)
 {
@@ -16,25 +18,25 @@ void	put_background(t_cub *cub)
 	int	j;
 
 	i = 0;
-	while (i < SCREENHEIGHT)
+	while (i < WIN_HEI)
 	{
 		j = 0;
-		while (j < SCREENWIDTH)
+		while (j < WIN_WID)
 		{
-			if (i < SCREENHEIGHT / 2 - cub->play.vue)
-				my_mlx_pixel_put(cub->mlx, j, i, cub->map->ceiling);
+			if (i < WIN_HEI / 2 - cub->play.vue)
+				my_mlx_pixel_put(cub->mlx_ptr, j, i, cub->map.ceiling);
 			else
-				my_mlx_pixel_put(cub->mlx, j, i, cub->map->floor);
+				my_mlx_pixel_put(cub->mlx_ptr, j, i, cub->map.floor);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	where_is_the_player(t_cub *cub)
+void	process_player(t_cub *cub)
 {
-	put_rectangle(cub->map->tile_draw_size * 7,
-		cub->map->tile_draw_size * 7, cub, make_trgb(50, 6, 92, 204));
+	put_rectangle(cub->map.draw_tile * 7,
+		cub->map.draw_tile * 7, cub, create_trgb(50, 6, 92, 204));
 }
 
 void	process_image(t_cub *cub)
@@ -44,18 +46,28 @@ void	process_image(t_cub *cub)
 	display_rays(cub);
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win,
 		cub->img, 0, 0);
-	if (cub->is_minimap)
+	if (cub->minimap)
 	{
-		put_grid2(cub);
-		display_player(cub);
+		get_grid(cub);
+		process_player(cub);
 	}
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win,
 		cub->img, 0, 0);
 }
 
-int	loop_img(t_cub *cub)
+int	loop_hook(t_cub *cub)
 {
 	mlx_clear_window(cub->mlx_ptr, cub->win);
 	process_image(cub);
 	return (0);
+}
+
+void	check_walls(t_cub *cub, int x_wall, int y_wall)
+{
+	if (cub->map.tabmap[(int)floor(y_wall / cub->map.size_tile)]
+		[(int)floor(x_wall / cub->map.size_tile)] != '1')
+	{
+		cub->pos.x = cub->play.dirx;
+		cub->pos.y = cub->play.diry;
+	}
 }

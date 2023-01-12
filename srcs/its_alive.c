@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:05:29 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/10 15:03:46 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 09:44:42 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,6 @@ int	a_little_bit( t_cub *cub)
 	pos.x = cub->pos.x;
 	pos.y = cub->pos.y;
 	color = create_trgb(0 , 200, 50, 50);
-	// pos.y = (cub->map.hei)/2;
-	// pos.x = (cub->map.wid)/2;
-
 	my_mlx_pixel_put(cub, pos.x - 1, pos.y, color);
 	my_mlx_pixel_put(cub, pos.x - 2, pos.y, color);
 	my_mlx_pixel_put(cub, pos.x + 1, pos.y, color);
@@ -80,17 +77,5 @@ int	a_little_bit( t_cub *cub)
 	my_mlx_pixel_put(cub, pos.x, pos.y - 2, color);
 	my_mlx_pixel_put(cub, pos.x, pos.y + 1, color);
 	my_mlx_pixel_put(cub, pos.x, pos.y + 2, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 1, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 2, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 3, color);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 4, color);
-	// draw_line(pos.x, pos.y + 100, cub, BLOOD);
-	// put_rect(cub, pos.x, pos.y, BLOOD, 100);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 1, BLOOD);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 2, BLOOD);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 3, BLOOD);
-	// my_mlx_pixel_put(cub, pos.x, pos.y - 4, BLOOD);
-	// mlx_put_image_to_window(cub->mlx_ptr, cub->win, cub->img, 0, 0);
 	return (0);
 }
-

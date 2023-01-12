@@ -6,11 +6,18 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:44:57 by creyt             #+#    #+#             */
-/*   Updated: 2022/12/15 10:33:58 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 10:46:52 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	ft_isspace(int c)
+{
+	if (c == ' ' || (c >= 9 && c <= 13))
+		return (1);
+	return (0);
+}
 
 int	get_floor_or_ceiling(t_map *map, int i)
 {
@@ -31,8 +38,8 @@ int	get_floor_or_ceiling(t_map *map, int i)
 	while (!ft_isdigit(map->map[i]))
 		i++;
 	b = ft_atoi(map->map + i);
-	return (0);
-//	return (make_trgb(is_color(a), is_color(r), is_color(g), is_color(b)));
+	return (create_trgb(colorfool(a), colorfool(r), colorfool(g),
+			colorfool(b)));
 }
 
 static int	get_info(t_map *map, char *type, int i)
