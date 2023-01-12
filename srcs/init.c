@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 10:51:15 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/12 11:49:47 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 16:44:22 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_cub	*init_game(char **arv)
 		critical_errors(ERR_MALLOC);
 	malloc_my_cub(cub);
 	cub->minimap = 1;
+	cub->nbr_t = 6;
 	cub->map->mmap_size = 1;
 	cub->mlx_ptr = mlx_init();
 	cub->img = mlx_new_image(cub->mlx_ptr, WIN_WID, WIN_HEI);
@@ -56,7 +57,7 @@ t_cub	*init_game(char **arv)
 	init_player_pos(cub);
 	cub->play->dirx = 0;
 	cub->play->diry = degree_to_radian(1);
-	cub->play->vue = WIN_HEI / 2;
+	cub->play->vue = WIN_HEI / 2; //juste ?? 
 	cub->pos->a = 0;
 	return (cub);
 }

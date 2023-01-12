@@ -6,7 +6,7 @@
 /*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/12 12:14:10 by vferraro         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:35:36 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 		critical_errors(ERR_ARG);
 	if (WIN_WID <= 0 || WIN_HEI <= 0)
 		critical_errors(ERR_WIN);
-	parse_map(cub->map, argv);
 	init_game(argv);
 	// cub = init_game(argv);
 	mlx_loop_hook(cub->mlx_ptr, loop_hook, cub);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 10:13:40 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/12 10:47:38 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 13:15:55 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	free_cub(t_cub *cub)
 	free(cub->map);
 	free(cub->play);
 	free(cub->ray);
+	free(cub->pos);
 	while (i < cub->nbr_t)
 	{
 		mlx_destroy_image(cub->mlx_ptr, cub->tex[i].tex);
