@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/12 10:42:31 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 11:49:53 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@
 # endif
 
 /*DEFINE VALUES */
-
 # define SMP 5
 # define SPD 10
 # define RSP degree_to_radian(1) //modifie
@@ -203,6 +202,7 @@ typedef struct s_cub
 t_cub	*init_game(char **arv);
 void	init_player(t_cub *cub);
 void	init_player_pos(t_cub *cub);
+int		init_texture(t_cub *cub);
 
 /* parse_map.c */
 void	get_tabmap(t_map *map, int i);
@@ -226,11 +226,6 @@ int		color_map(t_cub *cub);
 int		create_trgb(int t, int r, int g, int b);
 void	put_rect(t_cub *cub, int x, int y, int color, int size);
 
-/* cam_directions.c // RIP??
-void	move_left_camera(t_cub *cub, float new_x, float new_y);
-void	move_right_camera(t_cub *cub, float new_x, float new_y);
-*/
-
 /* play_directions.c
 void	move_w_angle(t_cub *cub, float new_x, float new_y);
 void	move_s_angle(t_cub *cub, float new_x, float new_y);
@@ -248,6 +243,9 @@ int		a_little_bit( t_cub *cub);
 int		bouge_ton_bool(void);
 int		move_your_body(int o_key, t_cub *cub);
 int		in_key_s_hook(int o_key, t_cub *cub);
+void	ft_tmp_angle(t_cub *cub);
+
+/* cam_directions.c */
 void	ft_camera_l(t_cub *cub);
 void	ft_camera_r(t_cub *cub);
 
@@ -286,6 +284,7 @@ char	*ft_strtrim_head(char *s1, char const *set);
 int		is_map(char c);
 
 int		ft_abs(int x);
+double	degree_to_radian(double degree);
 
 /*
 void	init_pos(t_cub *cub);
@@ -294,8 +293,6 @@ void	set_pos(t_cub *cub, double x, double y);
 int		read_map(t_cub *cub, char *file);
 int		draw_mmap(t_cub *cub, int i, int j);
 */
-double	degree_to_radian(double degree);
-//int	get_floor_or_ceiling(t_map *map, int i);
 
 /* BONUS (ON Y CROIT ou pas...) */
 

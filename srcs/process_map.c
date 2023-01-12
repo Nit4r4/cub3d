@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:46:50 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/12 11:21:10 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 11:39:17 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	put_background(t_cub *cub)
 		j = 0;
 		while (j < WIN_WID)
 		{
-			if (i < WIN_HEI / 2 - cub->play.vue)
-				my_mlx_pixel_put(cub->mlx_ptr, j, i, cub->map.ceiling);
+			if (i < WIN_HEI / 2 - cub->play->vue)
+				my_mlx_pixel_put(cub->mlx_ptr, j, i, cub->map->ceiling);
 			else
-				my_mlx_pixel_put(cub->mlx_ptr, j, i, cub->map.floor);
+				my_mlx_pixel_put(cub->mlx_ptr, j, i, cub->map->floor);
 			j++;
 		}
 		i++;
@@ -35,8 +35,8 @@ void	put_background(t_cub *cub)
 
 void	process_player(t_cub *cub)
 {
-	put_rectangle(cub->map.draw_tile * 7,
-		cub->map.draw_tile * 7, cub, create_trgb(50, 6, 92, 204));
+	put_rectangle(cub->map->draw_tile * 7,
+		cub->map->draw_tile * 7, cub, create_trgb(50, 6, 92, 204));
 }
 
 void	process_image(t_cub *cub)
@@ -64,10 +64,10 @@ int	loop_hook(t_cub *cub)
 
 void	check_walls(t_cub *cub, int x_wall, int y_wall)
 {
-	if (cub->map.tabmap[(int)floor(y_wall / cub->map.size_tile)]
-		[(int)floor(x_wall / cub->map.size_tile)] != '1')
+	if (cub->map->tabmap[(int)floor(y_wall / cub->map->size_tile)]
+		[(int)floor(x_wall / cub->map->size_tile)] != '1')
 	{
-		cub->pos.x = cub->play.dirx;
-		cub->pos.y = cub->play.diry;
+		cub->pos->x = cub->play->dirx;
+		cub->pos->y = cub->play->diry;
 	}
 }

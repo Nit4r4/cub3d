@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 10:51:15 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/12 10:42:13 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 11:49:47 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	malloc_my_cub(t_cub *cub)
 
 t_cub	*init_game(char **arv)
 {
+	t_cub	*cub;
+
 	cub = ft_calloc(sizeof(t_cub), 1);
 	if (!cub)
 		critical_errors(ERR_MALLOC);
@@ -45,9 +47,9 @@ t_cub	*init_game(char **arv)
 	cub->minimap = 1;
 	cub->map->mmap_size = 1;
 	cub->mlx_ptr = mlx_init();
-	cub->img = mlx_new_image(cub->mlx->mlx, WIN_WID, WIN_HEI);
-	cub->mlx_addr = mlx_get_cub_addr(cub->img,
-			&cub->bpp, &cub->mlx_len, &cub->mlx_nd);
+	cub->img = mlx_new_image(cub->mlx_ptr, WIN_WID, WIN_HEI);
+	cub->mlx_add = mlx_get_data_addr(cub->img,
+			&cub->mlx_bpp, &cub->mlx_len, &cub->mlx_nd);
 	parse_map(cub->map, arv);
 	init_texture(cub);
 	init_player(cub);

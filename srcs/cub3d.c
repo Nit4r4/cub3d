@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:33 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/12 11:01:46 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 11:49:55 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		critical_errors(ERR_ARG);
-	cub = init_game(cub);
+	cub = init_game(argv);
 	// cub->pos.x = (1 * CUBE) + (CUBE / 2);
 	// cub->pos.y = (3 * CUBE) + (CUBE / 2);
 	// cub->pos.a = 90;

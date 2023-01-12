@@ -6,7 +6,7 @@
 /*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:48:41 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/12 09:54:53 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 11:37:41 by creyt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	init_grid(t_grid *grid, t_cub *cub)
 {
-	grid->size = cub->map.draw_tile;
-	grid->p_x = floor(cub->pos.x / cub->map.size_tile);
-	grid->p_y = floor(cub->pos.y / cub->map.size_tile);
+	grid->size = cub->map->draw_tile;
+	grid->p_x = floor(cub->pos->x / cub->map->size_tile);
+	grid->p_y = floor(cub->pos->y / cub->map->size_tile);
 	grid->i = grid->p_y - 5;
 	grid->k = 0;
 }
@@ -27,7 +27,7 @@ void	put_rectangle(int x, int y, t_cub *cub, int color)
 	int	j;
 	int	size;
 
-	size = cub->map.draw_tile;
+	size = cub->map->draw_tile;
 	i = y;
 	while (i < size + y)
 	{
@@ -46,15 +46,15 @@ void	put_rectangles(t_grid *grid, t_cub *cub)
 	int	x;
 	int	y;
 
-	x = grid->l * grid->size + (cub->map.draw_tile * 2);
-	y = grid->k * grid->size + (cub->map.draw_tile * 2);
-	if (grid->i < 0 || grid->j < 0 || grid->i > cub->map.nb_lines - 1
-		|| grid->j > cub->map.len_line - 1)
+	x = grid->l * grid->size + (cub->map->draw_tile * 2);
+	y = grid->k * grid->size + (cub->map->draw_tile * 2);
+	if (grid->i < 0 || grid->j < 0 || grid->i > cub->map->nb_lines - 1
+		|| grid->j > cub->map->len_line - 1)
 		;
-	else if (cub->map.tabmap[grid->i][grid->j] == '1')
+	else if (cub->map->tabmap[grid->i][grid->j] == '1')
 		put_rectangle(x, y, cub, create_trgb(50, 105, 105, 105));
-	else if (cub->map.tabmap[grid->i][grid->j] == '0'
-		|| ft_strchr("NWSE", cub->map.tabmap[grid->i][grid->j]))
+	else if (cub->map->tabmap[grid->i][grid->j] == '0'
+		|| ft_strchr("NWSE", cub->map->tabmap[grid->i][grid->j]))
 		put_rectangle(x, y, cub, create_trgb(50, 180, 180, 180));
 }
 
