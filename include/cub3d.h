@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:48:55 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/11 15:45:49 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 11:10:38 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,6 +263,9 @@ int		a_little_bit( t_cub *cub);
 int		bouge_ton_bool(void);
 int		move_your_body(int o_key, t_cub *cub);
 int		in_key_s_hook(int o_key, t_cub *cub);
+void	ft_tmp_angle(t_cub *cub);
+
+/* cam_directions.c */
 void	ft_camera_l(t_cub *cub);
 void	ft_camera_r(t_cub *cub);
 
@@ -285,6 +288,7 @@ void	put_rectangles(t_grid *grid, t_cub *cub);
 void	get_grid(t_cub *cub);
 
 /*process_map.c */
+void	put_background(t_cub *cub);
 void	check_walls(t_cub *cub, int x_wall, int y_wall);
 int 	loop_hook(t_cub *cub);
 

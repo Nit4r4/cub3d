@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_minimap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:48:41 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/11 15:51:35 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 10:05:07 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	init_grid(t_grid *grid, t_cub *cub)
 
 void	put_rectangle(int x, int y, t_cub *cub, int color)
 {
-    
 	int	i;
 	int	j;
 	int	size;

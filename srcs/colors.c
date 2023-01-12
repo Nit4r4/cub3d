@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 08:02:15 by vferraro          #+#    #+#             */
-/*   Updated: 2023/01/11 14:15:32 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 11:14:09 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	color_map(t_cub *cub)
 	if (cub->win)
 	{
 		y = 0;
-		// printf("N=%c\n", cub->map.tabmap[11][26]);
 		while (y < cub->map.nb_lines)
 		{
 			x = 0;
@@ -64,8 +63,6 @@ int	color_map(t_cub *cub)
 			}
 			y++;
 		}
-		// put_rect(cub, 0, 0, BLOOD, 128);
-		// put_rect(cub, 1, 1, BLOOD, 128);
 		a_little_bit(cub);
 		mlx_put_image_to_window(cub->mlx_ptr, cub->win, cub->img, 0, 0);
 	}

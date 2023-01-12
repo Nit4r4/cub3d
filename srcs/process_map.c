@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:46:50 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/11 15:55:54 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 10:16:26 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	process_image(t_cub *cub)
 		cub->img, 0, 0);
 }
 
-int loop_hook(t_cub *cub)
+int	loop_hook(t_cub *cub)
 {
-    mlx_clear_window(cub->mlx_ptr, cub->win);
+	mlx_clear_window(cub->mlx_ptr, cub->win);
 	process_image(cub);
 	return (0);
 }

@@ -14,7 +14,7 @@ NAME = cub3d
 
 SRCS 	= srcs/cub3d.c srcs/init.c srcs/parse_map.c srcs/check_map.c \
 		srcs/map_utils.c srcs/free.c srcs/mini_libft.c srcs/colors.c srcs/its_alive.c \
-		srcs/key_hook.c srcs/degree.c \
+		srcs/key_hook.c srcs/degree.c srcs/cam_directions.c\
 		srcs/raycasting.c srcs/raycasting2.c srcs/process_minimap.c srcs/process_map.c
 
 OBJS 	= ${SRCS:.c=.o}
@@ -65,7 +65,7 @@ clean:
 					@$(MAKE) -C $(LBFT_PATH) clean
 #					@$(MAKE) -C $(MLX_PATH) clean
 					@$(MAKE) -C $(PRINTF_PATH) clean
-					@$(MAKE) -C $(GNL_PATH) fclean
+#					@$(MAKE) -C $(GNL_PATH) fclean
 					@echo "$(GREEN2)📚 Cleaning paths"
 					@sleep 0.2
 					@echo "$(YELLOW)Cub3D is all clean ! $(ORANGE)(ﾉ◕ヮ◕)ﾉ$(YELLOW)*:･ﾟ✧"
@@ -77,7 +77,7 @@ fclean: 	clean
 					@$(MAKE) -C $(LBFT_PATH) fclean
 					@$(MAKE) -C $(PRINTF_PATH) fclean
 #					@$(MAKE) -C $(MLX_PATH) fclean
-					@$(MAKE) -C $(GNL_PATH) fclean
+#					@$(MAKE) -C $(GNL_PATH) fclean
 					@printf "\r$(PURP)----- Deleting library ----\n"
 					@echo 🗑 "\033[31mEverything is deleting now !"
 					@sleep 0.2

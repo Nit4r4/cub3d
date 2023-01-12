@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creyt <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: vferraro <vferraro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 10:51:15 by creyt             #+#    #+#             */
-/*   Updated: 2023/01/11 14:51:56 by creyt            ###   ########.fr       */
+/*   Updated: 2023/01/12 10:08:04 by vferraro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	malloc_my_cub(t_cub *cub)
 		err_msg(ERR_MALLOC);
 	cub->play = ft_calloc(sizeof(t_player), 1);
 	if (!cub->p)
-		err_msg(ERR_MALLOC);
+		err_msg(ERR_MALLOC);cd ..
 	cub->t = ft_calloc(sizeof(t_texture), cub->nbr_t);
 	if (!cub->t)
 		err_msg(ERR_MALLOC);
@@ -72,13 +72,6 @@ void	init_player_pos(t_cub *cub)
 	/*definir position du player*/
 	// cub->pos.x = "N";
 	cub->play.vue = WIN_HEI / 2;
-	printf("len line : %d\n", cub->map.len_line);
-	printf("nb lines : %d\n", cub->map.nb_lines);
-	printf("mmap size : %d\n", cub->map.mmap_size);
-	// cub->pos.x = cub->map.nb_lines * cub->map.mmap_size + cub->map.mmap_size / 2;
-	// cub->pos.y = cub->map.len_line * cub->map.mmap_size + cub->map.mmap_size / 2;
-	printf("position x : %d\n", cub->pos.x);
-	printf("posiion y : %d\n", cub->pos.y);
 }
 
 void	init_player(t_cub *cub)
@@ -107,11 +100,6 @@ int	init_texture(t_cub *cub)
 			cub->map.ea, &cub->tex[2].wid_tex, &cub->tex[2].hei_tex);
 	cub->tex[3].tex = mlx_xpm_file_to_image(cub->mlx_ptr,
 			cub->map.we, &cub->tex[3].wid_tex, &cub->tex[3].hei_tex);
-	// cub->tex[4].tex = mlx_xpm_file_to_image(cub->mlx_ptr, tex_DOOR,
-	// 		&cub->tex[4].wid_tex, &cub->tex[4].hei_tex);
-	// cub->tex[5].tex = mlx_xpm_file_to_image(cub->mlx_ptr, tex_KNIFE,
-	// 		&cub->tex[5].wid_tex, &cub->tex[5].hei_tex);
-	while (++i < cub->nbr_t)
 	{
 		if (!cub->tex[i].tex)
 			critical_errors(ERR_TEX);
