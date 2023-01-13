@@ -1,0 +1,13 @@
+NO ./walls_xpm/bloodWall2.xpm
+SO ./walls_xpm/question.xpm
+WE ./walls_xpm/helpMe.xpm
+EA ./walls_xpm/bloodHands.xpm
+
+F 206,206,206
+C 141,11,11
+
+111111
+100001
+100001
+1N0001
+111111
